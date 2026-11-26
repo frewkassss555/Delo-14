@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Дело №14: Сеть. Интернет — территория безопасности</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=IBM+Plex+Mono:wght@400;600&display=swap&subset=cyrillic">
+<style>
+:root{--paper:#efe8d6;--ink:#151412;--red:#c9301e;--yel:#f2d21b;--card:#f8f3e5;--mute:#5d574a;--ok:#1f6b3a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1b1a17;--ink:#efe8d6;--card:#262420;--mute:#aaa38f;--red:#ee5c46;--ok:#6fcf8e;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#1b1a17;--ink:#efe8d6;--card:#262420;--mute:#aaa38f;--red:#ee5c46;--ok:#6fcf8e;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box;border-radius:0}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;background-image:repeating-linear-gradient(0deg,transparent 0 3px,rgba(128,120,100,.07) 3px 4px)}
+h1,h2,h3{font-family:'Oswald','Arial Narrow',Impact,sans-serif;text-transform:uppercase;line-height:1.05;margin:0 0 .5em;letter-spacing:.01em}
+h1{font-size:clamp(3.2rem,13vw,8.5rem);font-weight:700;text-shadow:5px 5px 0 var(--yel)}
+h1 em{font-style:normal;color:var(--red)}
+h2{font-size:clamp(2rem,6vw,3.4rem);font-weight:700;display:inline-block;background:var(--yel);color:#151412;padding:.05em .3em;transform:rotate(-1deg)}
+h3{font-size:1.5rem;font-weight:500}
+main,header,footer{max-width:900px;margin:0 auto;padding:0 18px}
+section{padding:56px 0 8px}
+.lead{max-width:62ch}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0}
+nav a{border:2px solid var(--ink);padding:6px 12px;color:var(--ink);text-decoration:none;background:var(--card);font-weight:600;font-size:.9rem}
+nav a:hover,nav a:focus-visible{background:var(--yel);color:#151412;outline:none}
+.btn,.opt{font:600 1rem/1.35 'IBM Plex Mono',monospace;color:var(--ink);background:var(--card);border:2px solid var(--ink);padding:10px 16px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);text-align:left}
+.btn{background:var(--yel);color:#151412;text-align:center}
+.btn:hover,.opt:hover:not(:disabled){transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn:focus-visible,.opt:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.opt:disabled{cursor:default;opacity:.85}
+.opt.good{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.bad{background:var(--red);color:#fff;border-color:var(--red)}
+.opts{display:grid;gap:12px;margin:16px 0}
+.card{position:relative;background:var(--card);border:2px solid var(--ink);padding:26px 20px 20px;margin:28px 0;box-shadow:8px 8px 0 var(--red)}
+.card::before{content:"";position:absolute;top:-12px;left:24px;width:90px;height:22px;background:var(--yel);opacity:.9;transform:rotate(-3deg)}
+.meta{color:var(--mute);font-size:.85rem}
+.stamp{display:inline-block;border:3px solid var(--red);color:var(--red);font:700 1.2rem 'Oswald',Impact,sans-serif;text-transform:uppercase;padding:2px 10px;transform:rotate(-4deg);margin:0 10px 8px 0}
+.stamp.ok{border-color:var(--ok);color:var(--ok)}
+.fb p{margin:.4em 0 1em}
+.res{font:700 1.6rem 'Oswald',Impact,sans-serif;text-transform:uppercase}
+.dos{list-style:none;margin:28px 0;padding:0;border-top:2px solid var(--ink);max-width:640px}
+.dos li{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:2px dashed var(--mute);animation:ty .5s both}
+.dos span:first-child{color:var(--mute)}
+.dos span:last-child{font-weight:600;text-align:right;overflow-wrap:anywhere}
+@keyframes ty{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@media (prefers-reduced-motion:reduce){.dos li{animation:none}html{scroll-behavior:auto}}
+textarea,input[type=text]{width:100%;font:inherit;background:var(--paper);color:var(--ink);border:2px solid var(--ink);padding:10px;margin:10px 0}
+textarea{min-height:90px}
+.code{font:700 clamp(1.8rem,7vw,3rem) 'Oswald',Impact,sans-serif;text-transform:uppercase;margin:12px 0;background:var(--yel);color:#151412;display:inline-block;padding:2px 14px}
+ol.sos{padding-left:1.3em}
+ol.sos li{margin:10px 0}
+.law{border-left:6px solid var(--red);padding:4px 14px;color:var(--mute);font-size:.9rem;max-width:70ch}
+footer{padding:48px 18px 40px;color:var(--mute);font-size:.88rem}
+#cert{border:4px double var(--ink);padding:30px 22px;text-align:center;background:var(--card);margin:24px 0}
+#cert .nm{font:700 2.4rem 'Oswald',Impact,sans-serif;text-transform:uppercase;border-bottom:3px solid var(--ink);display:inline-block;min-width:60%;min-height:3rem}
+[hidden]{display:none!important}
+.gate{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin:20px 0 32px}
+.tile{font:inherit;color:var(--ink);background:var(--card);border:3px solid var(--ink);padding:22px 18px;text-align:left;cursor:pointer;box-shadow:8px 8px 0 var(--ink);min-height:200px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.tile b{font:700 2.5rem/1 'Oswald',Impact,sans-serif;text-transform:uppercase}
+.tile span{color:var(--mute)}
+.tile:nth-child(1){box-shadow:8px 8px 0 var(--red)}
+.tile:nth-child(2){box-shadow:8px 8px 0 var(--yel)}
+.tile:hover{transform:translate(3px,3px);box-shadow:5px 5px 0 var(--ink)}
+.tile:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.plan{list-style:none;padding:0;margin:0 0 18px}
+.plan li{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-bottom:2px dashed var(--mute)}
+.plan b{font:700 1.4rem 'Oswald',Impact,sans-serif}
+#term{background:#151412;color:#f2d21b;padding:14px;margin:0;min-height:150px;white-space:pre-wrap;overflow-wrap:anywhere;font:600 .95rem/1.55 'IBM Plex Mono',monospace;border:2px solid var(--ink)}
+#pf{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);right:10px;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.pfb{display:flex;align-items:center;gap:8px;font:600 .9rem 'IBM Plex Mono',monospace;color:var(--ink);background:var(--card);border:2px solid var(--ink);padding:4px 10px 4px 4px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.pfb b{background:var(--yel);color:#151412;padding:0 8px;font:700 1.05rem 'Oswald',Impact,sans-serif}
+.pfb.pop b{background:var(--red);color:#fff}
+.av{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:2px solid var(--ink);font:700 1.1rem 'Oswald',Impact,sans-serif;color:#fff;text-shadow:1px 1px 0 #151412,-1px -1px 0 #151412;flex:none}
+.av.big{width:64px;height:64px;font-size:2rem}
+#pfp{width:min(310px,calc(100vw - 20px));max-height:calc(100vh - 80px);overflow:auto;background:var(--card);border:3px solid var(--ink);padding:16px;box-shadow:6px 6px 0 var(--red)}
+.pfh{display:flex;gap:12px;align-items:flex-end}
+.pts{font:700 1.5rem 'Oswald',Impact,sans-serif;text-transform:uppercase;margin:12px 0 6px}
+.bar{height:14px;border:2px solid var(--ink);background:var(--paper)}
+.bar i{display:block;height:100%;background:var(--red);width:0;transition:width .4s}
+.avs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+.avs button{width:40px;height:40px;border:2px solid var(--ink);padding:0;cursor:pointer}
+.avs button[aria-pressed=true]{outline:3px solid var(--red);outline-offset:2px}
+.sm{font-size:.85rem;padding:6px 10px;box-shadow:3px 3px 0 var(--ink);display:inline-block;margin:4px 6px 4px 0}
+@media(max-width:480px){#pfn{display:none}}
+#as{position:fixed;right:10px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.asb{display:flex;align-items:center;gap:10px;font:700 1rem 'Oswald',Impact,sans-serif;text-transform:uppercase;letter-spacing:.04em;color:#151412;background:var(--yel);border:3px solid var(--ink);padding:0 14px 0 0;cursor:pointer;box-shadow:5px 5px 0 var(--ink)}
+.asb b{background:var(--ink);color:var(--yel);width:40px;align-self:stretch;display:flex;align-items:center;justify-content:center;font-size:1.6rem}
+.asb:hover{transform:translate(2px,2px);box-shadow:3px 3px 0 var(--ink)}
+.asb:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+#asp{width:min(340px,calc(100vw - 20px));height:min(460px,calc(100vh - 110px));display:flex;flex-direction:column;background:var(--card);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red)}
+.ash{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:10px 12px;background:var(--ink);color:var(--paper)}
+.ash b{font:700 1.2rem 'Oswald',Impact,sans-serif;text-transform:uppercase;display:block}
+.ash .meta{color:inherit;opacity:.75;display:block;font-size:.8rem}
+.ash button{font:600 .8rem 'IBM Plex Mono',monospace;background:var(--yel);color:#151412;border:2px solid var(--paper);padding:2px 8px;cursor:pointer}
+.asl{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:88%;padding:8px 10px;border:2px solid var(--ink);font-size:.9rem;line-height:1.45}
+.msg.bot{background:var(--paper);align-self:flex-start}
+.msg.me{background:var(--yel);color:#151412;align-self:flex-end}
+.asq{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px}
+.asq button{font:600 .78rem 'IBM Plex Mono',monospace;color:var(--ink);background:var(--card);border:2px solid var(--ink);padding:4px 8px;cursor:pointer;text-align:left}
+.asq button:hover{background:var(--yel);color:#151412}
+.asi{display:flex;gap:8px;padding:0 12px;align-items:center}
+.asi input{margin:0;flex:1;min-width:0}
+.asi .btn{margin:0;white-space:nowrap}
+.ast{padding:6px 12px 10px;margin:0;font-size:.75rem}
+.ph{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px;background:linear-gradient(#b9c7c0 0 70%,#6e6a5f 70%);border:3px solid #151412;margin:10px 0}
+.ph .sign{grid-column:1/3;text-align:center;background:#2d5b49;color:#f4efdf;font-weight:700}
+.ph .sign:hover{background:#3a7360}
+.sp{font:600 .8rem 'IBM Plex Mono',monospace;color:#151412;background:#f4efdf;border:2px solid #151412;padding:6px 8px;cursor:crosshair;text-align:left}
+.sp:hover{background:#fff7c2}
+.sp.on{background:var(--yel);outline:3px solid var(--red);outline-offset:2px}
+.card.ret .sp{background:#151412!important;color:#151412!important;outline:none}
+.col{display:flex;flex-direction:column;gap:10px;justify-content:flex-end;align-items:center}
+.kid{width:100%;max-width:170px}
+.hd{display:block;width:34px;height:34px;background:#d9a77c;margin:0 auto;border:2px solid #151412}
+.bd{background:#2d4a7a;border:2px solid #151412;margin-top:2px;padding:14px 4px;min-height:80px;display:flex;justify-content:center}
+.door{width:100%;max-width:130px;height:110px;background:#7a4a2a;border:3px solid #151412}
+.mat{width:100%;max-width:150px;background:#3f3a30;border:2px solid #151412;padding:6px;display:flex;justify-content:center}
+.lk-top{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cap{margin:8px 0}
+.lkb{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+.lkb .btn{margin:0}
+.lkl{list-style:none;padding:0;margin:12px 0}
+.lkl li{border-left:6px solid var(--red);padding:4px 10px;margin:6px 0;font-size:.9rem}
+.lt{font:inherit;color:var(--ink);background:var(--card);border:3px solid var(--ink);padding:18px 16px;text-align:left;cursor:pointer;box-shadow:6px 6px 0 var(--ink);min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.lt b{font:700 2rem/1 'Oswald',Impact,sans-serif;text-transform:uppercase}
+.lt span{color:var(--mute)}
+.lt em{font-style:normal;color:var(--red);font-weight:700}
+.lt:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--ink)}
+.lt:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.tm{background:#151412;color:#f2d21b;padding:14px;margin:12px 0;white-space:pre-wrap;overflow-wrap:anywhere;font:600 .95rem/1.55 'IBM Plex Mono',monospace;border:2px solid var(--ink)}
+.bw{border:3px solid #151412;background:#f4efdf;color:#151412;margin:10px 0}
+.ab{display:flex;gap:6px;align-items:center;flex-wrap:wrap;background:#d9d3c0;padding:8px 10px;border-bottom:3px solid #151412;font:600 .85rem 'IBM Plex Mono',monospace;overflow-wrap:anywhere}
+.ab input{margin:0;flex:1;min-width:140px;background:#f4efdf;color:#151412;font-size:.85rem}
+.bw [data-c]{cursor:crosshair}
+.ab span[data-c]:hover,.pg b[data-c]:hover,.pg s[data-c]:hover{background:#fff7c2}
+.pg{padding:12px}
+.pg h4{margin:0 0 6px;font:700 1.3rem 'Oswald',Impact,sans-serif;text-transform:uppercase}
+.pg p{margin:.3em 0}
+.pg .row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.pg pre{background:#151412;color:#f2d21b;padding:8px;margin:8px 0 0;overflow:auto;font-size:.8rem;white-space:pre-wrap}
+.dl{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--paper);z-index:45}
+#tb{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;display:flex;align-items:center;gap:12px;padding:8px 250px 8px 14px;background:var(--paper);border-bottom:3px solid var(--ink)}
+.lg{flex:none;font:700 1.3rem/1 'Oswald',Impact,sans-serif;text-transform:uppercase;background:var(--yel);color:#151412;border:2px solid var(--ink);padding:5px 10px;text-decoration:none;transform:rotate(-2deg);box-shadow:3px 3px 0 var(--ink)}
+.lg:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+#nv{margin:0;flex:1;flex-wrap:nowrap;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin}
+#nv a{white-space:nowrap;padding:4px 10px;font-size:.85rem}
+#nv a[aria-current=true]{background:var(--yel);color:#151412}
+section{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 76px)}
+@media(max-width:480px){#tb{padding-right:125px}.lg span{display:none}}
+.rg{display:grid;gap:16px;margin-top:10px}
+.vmode .rg{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
+.vmode #rmp{order:2}
+@media(max-width:760px){.vmode .rg{grid-template-columns:1fr}}
+.vmh{background:#151412;color:#f2d21b;font:600 .75rem 'IBM Plex Mono',monospace;padding:4px 10px}
+.ck{list-style:none;padding:0;margin:6px 0}
+.ck li{font-size:.85rem;padding:2px 0}
+.ck li.ok{color:#1f6b3a;font-weight:700}
+.pg label{display:flex;justify-content:space-between;gap:8px;align-items:center;margin:6px 0;font-size:.85rem}
+.pg select{font:inherit;background:#f4efdf;color:#151412;border:2px solid #151412;padding:2px 4px}
+.pg input[type=text]{margin:6px 0}
+.dl li{display:flex;gap:8px;justify-content:space-between;align-items:center;font-size:.78rem}
+.mncard{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;background:var(--yel);color:#151412;border:3px solid var(--ink);padding:16px;margin:12px auto;max-width:520px;font:600 1.05rem/1.4 'IBM Plex Mono',monospace;text-align:center;box-shadow:5px 5px 0 var(--ink);position:relative;z-index:5}
+.mncard.drag{cursor:grabbing;box-shadow:10px 10px 0 var(--ink)}
+.mnz{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.mnz>div{min-height:130px;display:flex;align-items:center;justify-content:center;border:3px dashed var(--ink);font:700 2rem 'Oswald',Impact,sans-serif;text-transform:uppercase;cursor:pointer}
+.zn{background:rgba(201,48,30,.12);color:var(--red)}
+.zy{background:rgba(31,107,58,.14);color:var(--ok)}
+.mnz>div.hot{border-style:solid;outline:4px solid var(--yel)}
+.mnz>div:focus-visible,.mncard:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.cwn{border:3px solid var(--ink);background:var(--card);margin:10px 0}
+.cm{display:flex;flex-direction:column;gap:10px;min-height:220px;max-height:420px;overflow:auto;padding:12px}
+.cm .msg{max-width:92%}
+#cty{padding:0 12px 8px}
+.csb{display:flex;gap:8px;flex-wrap:wrap}
+.csb button{margin:0}
+.csb button[aria-pressed=true]{background:var(--red);color:#fff}
+.ibh{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ibh .bar{flex:1;min-width:120px}
+#ibt{font:700 2.6rem/1 'Oswald',Impact,sans-serif;min-width:2.2ch}
+.ibm{border:3px solid var(--ink);background:var(--paper);padding:14px;margin:12px 0;min-height:120px}
+.ibm p{margin:.3em 0;font-size:1.05rem}
+.ibo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+.ibo .opt{text-align:center}
+@media(max-width:560px){.ibo{grid-template-columns:1fr}}
+.bds{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.bd2{border:2px dashed var(--mute);padding:6px;color:var(--mute);font-size:.7rem;line-height:1.3}
+.bd2 b{display:block;font:700 .95rem 'Oswald',Impact,sans-serif;text-transform:uppercase}
+.bd2 span{display:block}
+.bd2.on{border:3px solid var(--red);color:var(--ink);transform:rotate(-1.5deg)}
+.bd2.on b{color:var(--red)}
+#ts{position:fixed;left:10px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:60;background:#151412;color:#f2d21b;border:3px solid var(--yel);padding:10px 14px;font:700 .95rem 'IBM Plex Mono',monospace;max-width:min(320px,calc(100vw - 180px))}
+@media(max-width:480px){.asb{font-size:0;padding:0;gap:0}.asb b{font-size:1.5rem;width:48px;min-height:48px}.plan li{grid-template-columns:1fr;gap:2px}}
+footer a{color:var(--ink);font-weight:600}
+footer p{margin:.3em 0}
+#lgsw{flex:none;margin:0;padding:4px 8px;box-shadow:3px 3px 0 var(--ink)}
+.bd{position:relative;margin:24px 0;padding:26px 20px 22px;background:#a67c52 repeating-linear-gradient(45deg,rgba(0,0,0,.07) 0 3px,transparent 3px 6px);border:6px solid #5b3d22;box-shadow:inset 0 0 40px rgba(0,0,0,.35)}
+.bd svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.bdc{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:26px 18px;z-index:1}
+.bdk{position:relative;background:#f4efdf;color:#151412;padding:16px 12px 12px;border:2px solid #151412;box-shadow:4px 4px 0 rgba(0,0,0,.45);min-height:160px;z-index:1}
+.bdk:nth-child(odd){transform:rotate(-1.4deg)}
+.bdk:nth-child(even){transform:rotate(1.2deg)}
+.bdk::before{content:"";position:absolute;top:-9px;left:50%;width:14px;height:14px;margin-left:-7px;background:#c9301e;border:2px solid #151412}
+.bdk b{display:block;font:700 1.15rem 'Oswald',Impact,sans-serif;text-transform:uppercase}
+.bdk p{font-size:.8rem;margin:.4em 0}
+.bdk .meta{color:#5d574a}
+.bdk .btn{margin-top:4px}
+.bdk.lock{filter:grayscale(1) contrast(.9);opacity:.85}
+.bdk.boss{grid-column:1/-1;min-height:110px;text-align:center;transform:none}
+@media(max-width:640px){.bdc{grid-template-columns:1fr 1fr;gap:22px 12px}.bdk{padding:14px 8px 10px}}
+@media print{body *{visibility:hidden}#passport,#passport *{visibility:visible}#passport{position:absolute;left:0;top:0;width:100%}#passport .noprint,#passport .noprint *{display:none}}
+</style>
+</head>
+<body>
+<div id="pf">
+<button class="pfb" id="pfb" aria-expanded="false" aria-controls="pfp"><span class="av" id="av1"></span><span id="pfn">Гость</span><b id="pfs">0</b></button>
+<div id="pfp" role="dialog" aria-label="Профиль участника" hidden>
+<div class="pfh"><span class="av big" id="av2"></span><div><label for="pnk" class="meta">Ник</label><input type="text" id="pnk" maxlength="16" placeholder="Придумай ник" autocomplete="off"></div></div>
+<div class="pts"><span id="pp">0</span> баллов, <span id="prk"></span></div>
+<div class="bar"><i id="pbr"></i></div>
+<p class="meta" id="pnx"></p>
+<div class="meta">Аватар</div>
+<div class="avs" id="avs"></div>
+<label class="btn sm" for="pup">Загрузить своё фото</label><input type="file" id="pup" accept="image/*" hidden>
+<p class="meta">Баллы: +10 за верный ответ, +20 за пройденный тест, +5 за голос и за кодовое слово, +10 за сильный пароль и за каждую найденную улику в кадре, +10 за задание лаборатории и +30 за пройденную комнату, +20 за пойманного мошенника в переписке, +5 за верно разобранное сообщение в инбоксе. Профиль хранится только в этом браузере.</p>
+<p class="meta" id="bdn"></p>
+<div class="bds" id="bds"></div>
+<button class="btn sm" id="prs" type="button">Сбросить профиль</button>
+</div>
+</div>
+<div id="tb"><a class="lg" id="lg" href="#gate"><span>Дело </span>№14</a><button class="btn sm" id="lgsw" type="button" aria-label="Мова / Язык">BE</button><span class="meta" id="tbh">Выбери роль ниже</span><nav id="nv" aria-label="Разделы" hidden></nav></div>
+<header>
+<p class="meta" style="margin-top:28px">Конкурс «Интернет — территория безопасности»</p>
+<h1>Дело №14: <em>Сеть</em></h1>
+<p class="lead">Пока ты читал заголовок, этот сайт уже кое-что узнал о тебе. Мы ничего не отправляем: всё считается в твоём браузере и исчезнет вместе со страницей. Теперь представь, что видят о тебе те, кто специально ищет.</p>
+<ul class="dos" id="dos" aria-label="Что сайт знает о посетителе"></ul>
+<h3 id="gh" style="margin-top:28px">Кто ты? Выбери свою дорожку</h3>
+<div class="gate" id="gate">
+<button class="tile" data-role="school"><b>Школьник</b><span>Поймай мошенника в семи делах, отличи подделку от настоящего сайта и получи паспорт.</span></button>
+<button class="tile" data-role="parent"><b>Родитель</b><span>Ситуации, в которых легко растеряться, права семьи и кодовое слово против подделки голоса.</span></button>
+<button class="tile" data-role="teacher"><b>Учитель</b><span>Готовый классный час на 15 минут и все материалы для показа на экране.</span></button>
+</div>
+
+</header>
+<main>
+
+<section id="board" data-r="school parent teacher">
+<h2>Доска дела</h2>
+<p class="lead">Группа «Тихий Дозвон» обманывает людей по всей сети. Собери шесть улик, проходя разделы сайта: нить на доске потянется от одной улики к следующей, а когда все улики будут на месте, ты узнаешь, кто главарь.</p>
+<div class="bd" id="bdb"><svg id="bdl" aria-hidden="true"></svg><div class="bdc" id="bdc"></div></div>
+<div id="bdf" aria-live="polite"></div>
+</section>
+
+<section id="plan" data-r="teacher">
+<h2>Классный час: 15 минут</h2>
+<p class="lead">Открой сайт на экране, раздели класс на команды и голосуйте за варианты. Сначала обсуждение, потом правильный ответ.</p>
+<div class="card"><ol class="plan">
+<li><b>0–2 мин</b><span>Досье. Покажи блок «что сайт знает о тебе» вверху страницы. Вопрос классу: что из этого вы не ожидали увидеть?</span></li>
+<li><b>2–7 мин</b><span>Дело 4 «Звонок от мамы» из раздела «Расследование»: класс голосует за вариант, потом открой ответ.</span></li>
+<li><b>7–10 мин</b><span>Один раунд из «Ссылка или подделка»: кто заметил подмену раньше ответа?</span></li>
+<li><b>10–13 мин</b><span>«Суд», случай 1 про оскорбления в сети: права и обязанности в цифровой среде.</span></li>
+<li><b>13–15 мин</b><span>Кодовое слово семьи как домашнее задание и раздел «Меня взломали» на память.</span></li>
+</ol>
+<button class="btn" id="cp">Скопировать ссылку для школьников</button> <span id="cpm" class="meta"></span>
+</div>
+<h3>Когда ребёнку нужна помощь</h3>
+<p class="lead">Это поводы поговорить, а не диагнозы: ребёнок резко закрывается после телефона, прячет экран, удаляет переписки, тревожится от уведомлений, появились необъяснимые траты. Говорите спокойно и без обвинений, чтобы он не боялся признаться.</p>
+</section>
+
+<section id="fam" data-r="parent" data-k="p">
+<h2>Родителям: 7 ситуаций</h2>
+<p class="lead">Ситуации, в которых родителю легко растеряться. Выберите, как поступить, и сравните с ответом. Потом пройдите ниже те же дела, что и ребёнок, и сравните результаты.</p>
+<div class="card" id="pbox"></div>
+</section>
+
+<section id="game" data-r="school parent teacher" data-k="g">
+<h2>Расследование: 7 дел</h2>
+<p class="lead">В каждом деле тебя пытается обмануть мошенник. Выбери, как поступить. Подходит и школьникам, и родителям: родителям полезно пройти то же самое и сравнить ответы.</p>
+<div class="card" id="gbox"></div>
+</section>
+
+<section id="chat" data-r="school parent teacher">
+<h2>Переписка с мошенником</h2>
+<p class="lead">Мошенник уже пишет тебе. Выбирай ответы: одни приведут к потере денег или аккаунта, другие заставят его отступить. Три разные истории, и в каждой несколько концовок.</p>
+<div class="card">
+<div class="csb" id="csb"><button class="btn sm" type="button" data-s="a" aria-pressed="false">Друг в беде</button><button class="btn sm" type="button" data-s="b" aria-pressed="false">Бесплатный скин</button><button class="btn sm" type="button" data-s="c" aria-pressed="false">Звонок из банка</button></div>
+<p class="meta" id="csn"></p>
+<div class="cwn"><div class="vmh" id="cwh">Мессенджер</div><div class="cm" id="cm" aria-live="polite"></div><div class="meta" id="cty" hidden>печатает...</div></div>
+<div class="opts" id="co"></div>
+</div>
+</section>
+
+<section id="mn" data-r="school parent teacher" data-k="n">
+<h2>Можно или нельзя</h2>
+<p class="lead">Перетащи действие в нужную сторону: влево, если нельзя, вправо, если можно. На телефоне можно просто нажать на нужную сторону, а с клавиатуры работают стрелки. Всего 10 действий.</p>
+<div class="card" id="mnb">
+<div class="meta" id="mnc"></div>
+<div class="mncard" id="mncd" tabindex="0" role="button" aria-label="Действие: перетащи или нажми стрелку влево или вправо"></div>
+<div class="mnz"><div class="zn" id="zn" role="button" tabindex="0">Нельзя</div><div class="zy" id="zy" role="button" tabindex="0">Можно</div></div>
+<div id="mnf" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="links" data-r="school parent teacher" data-k="l">
+<h2>Ссылка или подделка</h2>
+<p class="lead">В каждом раунде три адреса, и один из них ловушка. Совет на всю жизнь: сайт банка или магазина открывай из закладки, а не из сообщения.</p>
+<div class="card" id="lbox"></div>
+</section>
+
+<section id="inbox" data-r="school parent teacher">
+<h2>Инбокс 60 секунд</h2>
+<p class="lead">За минуту разбери как можно больше сообщений: «Нормально», «Ловушка» или «Звони родителям». Третий вариант для случаев, когда нужен взрослый: зовут встретиться, шантажируют, предлагают сомнительный заработок. Клавиши 1, 2 и 3 тоже работают.</p>
+<div class="card">
+<div class="ibh"><b id="ibt">60</b><div class="bar"><i id="ibb" style="width:100%"></i></div><span class="meta" id="ibc"></span></div>
+<div class="ibm" id="ibm"></div>
+<div class="ibo" id="ibo"><button class="opt" type="button" data-v="0" disabled>1. Нормально</button><button class="opt" type="button" data-v="1" disabled>2. Ловушка</button><button class="opt" type="button" data-v="2" disabled>3. Звони родителям</button></div>
+<p id="ibf" aria-live="polite"></p>
+<div id="ibr"></div>
+<button class="btn" type="button" id="ibs">Начать</button>
+</div>
+</section>
+
+<section id="leak" data-r="school parent teacher">
+<h2>Улика в кадре</h2>
+<p class="lead">Это пост вымышленной школьницы: для неё просто фото с подписью. Найди в кадре 6 деталей, по которым чужой человек узнает, кто она, где учится и когда дома никого нет. Нажимай на всё, что считаешь утечкой.</p>
+<div class="card">
+<div class="lk-top meta"><span>dasha_8b</span><button type="button" class="sp" data-i="0">Гомель, ул. Липовая, 12</button></div>
+<div class="ph">
+<button type="button" class="sp sign" data-i="1">Средняя школа №127</button>
+<div class="col"><div class="kid"><i class="hd"></i><div class="bd"><button type="button" class="sp" data-i="2">Даша К., 8Б</button></div></div><button type="button" class="sp" data-i="3">Уроки до 14:30. Танцы: вт и чт в 17:00</button></div>
+<div class="col"><div class="door"></div><div class="mat"><button type="button" class="sp" data-i="4">ключ</button></div></div>
+</div>
+<p class="cap"><button type="button" class="sp" data-i="5">«Одна дома до пятницы, родители в командировке!»</button></p>
+<div class="lkb"><b id="lkc">Найдено 0 из 6</b><button class="btn sm" id="lkr" type="button">Заретушировать всё</button></div>
+<ul id="lkl" class="lkl" aria-live="polite"></ul>
+<div id="lkd" hidden><span class="stamp ok">Досье собрано</span><p>Из одного снимка постороннему хватило бы пары минут, чтобы узнать, где живёт девочка, где учится, во сколько выходит и что дома никого нет. Нажми «Заретушировать всё» и сравни. Правила: выключай геометку, не снимай вывески, бейджи и ключи, не пиши, когда ты один дома, и закрой профиль. Персонаж и адрес вымышлены.</p></div>
+</div>
+</section>
+
+<section id="court" data-r="school parent teacher" data-k="c">
+<h2>Суд</h2>
+<p class="lead">Семь ситуаций из жизни. Реши, чья это ответственность, и посмотри, что об этом говорит закон Беларуси.</p>
+<div class="card" id="cbox"></div>
+<p class="law">Материал образовательный и не заменяет консультацию юриста. Нормы и штрафы меняются, актуальные тексты ищи на pravo.by.</p>
+</section>
+
+<section id="pass" data-r="school parent teacher">
+<h2>Взломщик паролей</h2>
+<p class="lead">Введи пароль и смотри, как его ломает программа. Всё считается в твоём браузере и никуда не отправляется. Свой настоящий пароль не вводи: попробуй похожий по длине и составу.</p>
+<div class="card">
+<label for="pw" class="meta">Пароль для проверки</label>
+<input type="text" id="pw" autocomplete="off" spellcheck="false" placeholder="Например, qwerty123">
+<pre id="term" aria-live="polite"></pre>
+</div>
+</section>
+
+<section id="voice" data-r="school parent teacher">
+<h2>Голос: как это делают мошенники</h2>
+<p class="lead">Нажми кнопку: браузер прочитает текст вслух. Это простой синтезатор, а нейросети умеют копировать настоящий голос по короткой записи, например из голосового сообщения или сторис. Поэтому «мам, это я, срочно нужны деньги» сегодня нельзя проверять на слух.</p>
+<div class="card">
+<label for="vt" class="meta">Текст, который прозвучит</label>
+<textarea id="vt">Мам, это я. Я попал в беду, срочно переведи деньги на этот номер. Только папе не говори.</textarea>
+<button class="btn" id="vbtn">Озвучить</button>
+<p id="vmsg" class="meta"></p>
+<h3 style="margin-top:28px">Защита: кодовое слово семьи</h3>
+<p>Договоритесь о слове, которое знают только свои. Позвонили «родственник» и просит денег: спроси слово. Не знает — это обман. Ниже случайная идея, а лучше придумайте своё и не пишите его в чатах.</p>
+<div class="code" id="cw">Жёлтый-Трактор</div><br>
+<button class="btn" id="cwb">Другое слово</button>
+</div>
+</section>
+
+<section id="lab" data-r="school parent teacher">
+<h2>Лаборатория</h2>
+<p class="lead">Три комнаты, в каждой по 7 заданий по порядку. В заданиях 6 и 7 справа открывается виртуалка с сайтом: делай там задачу, забирай флаг и вводи его слева. В средней и тяжёлой тебе дают прототип сайта, в котором нужно найти ошибку или опасность. Всё вымышлено, данные ненастоящие. За каждую комнату даётся флаг, как на настоящих соревнованиях.</p>
+<div class="gate" id="lv">
+<button class="lt" type="button" data-l="e"><b>Лёгкий</b><span>Основы: домены, коды и пароли. Без сайтов, только голова.</span><em id="lse"></em></button>
+<button class="lt" type="button" data-l="m"><b>Средний</b><span>Поддельный магазин: разобрать сайт по кускам.</span><em id="lsm"></em></button>
+<button class="lt" type="button" data-l="h"><b>Тяжёлый</b><span>Школьный портал с дырами: найди уязвимости.</span><em id="lsh"></em></button>
+</div>
+<div class="card" id="room" hidden>
+<button class="btn sm" type="button" id="rmback">К выбору уровня</button>
+<div class="meta" id="rmt"></div>
+<div class="bar"><i id="rmb"></i></div>
+<div class="rg">
+<div id="rmp" hidden></div>
+<div class="vl">
+<p id="rmq"></p>
+<div id="rma"><input type="text" id="rmi" placeholder="Твой ответ" autocomplete="off" aria-label="Ответ"><button class="btn" type="button" id="rms">Отправить</button></div>
+<button class="btn sm" type="button" id="rmhb">Подсказка</button>
+<p class="meta" id="rmh" aria-live="polite"></p>
+<div id="rmf" aria-live="polite"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="sos" data-r="school parent teacher">
+<h2>Меня взломали</h2>
+<p class="lead">Без паники. Первые десять минут решают всё.</p>
+<ol class="sos">
+<li>Скажи взрослому, которому доверяешь. Бояться ругани не нужно: виноват тот, кто взломал.</li>
+<li>Смени пароль в почте, а потом в остальных сервисах. Начинай с почты: через неё сбрасывают все остальные пароли.</li>
+<li>Выйди из аккаунта на всех устройствах и включи двухэтапную защиту.</li>
+<li>Если списали деньги, сразу позвони в банк и заблокируй карту.</li>
+<li>Сохрани скриншоты переписки и ссылки, а потом сообщи в поддержку сервиса. При серьёзном ущербе родители могут обратиться в милицию.</li>
+</ol>
+</section>
+
+<section id="passport" data-r="school parent">
+<h2>Паспорт цифровой безопасности</h2>
+<p class="lead noprint">Пройди дела, ссылки и суд, впиши имя и распечатай паспорт или сохрани его как PDF.</p>
+<div class="noprint"><label for="nm" class="meta">Имя</label><input type="text" id="nm" maxlength="24" placeholder="Например, Саша" autocomplete="off"></div>
+<div id="cert">
+<div class="meta">Дело №14: Сеть</div>
+<div class="nm" id="cnm">&nbsp;</div>
+<p>прошёл(а) проверку на цифровую безопасность</p>
+<div class="stamp" id="clv">Стажёр</div>
+<p id="csc"></p>
+<p class="meta" id="cbd"></p>
+<p class="meta" id="cdt"></p>
+</div>
+<button class="btn noprint" id="pr">Печать или PDF</button>
+</section>
+<section id="about" data-r="school parent teacher">
+<h2>О проекте</h2>
+<div class="card">
+<p>«Дело №14: Сеть» создан для конкурса «Интернет — территория безопасности».</p>
+<h3>Как это связано с критериями номинации</h3>
+<ul>
+<li>Ответственное поведение: расследование, инбокс, переписка с мошенником, лаборатория.</li>
+<li>Права и обязанности: разделы «Суд» и «Можно или нельзя».</li>
+<li>Правовая культура детей и родителей: отдельная дорожка для родителей, кодовое слово семьи.</li>
+<li>Профилактика: дорожка учителя с готовым классным часом на 15 минут.</li>
+</ul>
+<h3>Источники и оговорка</h3>
+<p>Нормы взяты из открытых материалов: Уголовный кодекс (глава 31 и ст. 212), КоАП (ст. 9.3), закон о защите персональных данных № 99-З, портал pravo.by. Материал образовательный и не заменяет консультацию юриста: актуальные редакции проверяй на pravo.by.</p>
+<h3>Данные</h3>
+<p>Сайт ничего не отправляет на сервер. Профиль, баллы и штампы хранятся только в твоём браузере.</p>
+</div>
+</section>
+</main>
+<div id="ts" role="status" hidden></div>
+<div id="as">
+<div id="asp" role="dialog" aria-label="Помощник" hidden>
+<div class="ash"><div><b>Дежурный помощник</b><span class="meta">Дело №14: на связи</span></div><button type="button" id="asx">Закрыть</button></div>
+<div class="asl" id="asl" aria-live="polite"><div class="msg bot">Здравствуй. Я дежурный по делу. Спроси про ссылки, пароли, мошенников или закон, подскажу, с чего начать.</div></div>
+<div class="asq" id="asq"><button type="button">Как отличить фишинг?</button><button type="button">Что делать, если взломали?</button><button type="button">Придумать пароль</button></div>
+<div class="asi"><input type="text" id="asin" placeholder="Напиши вопрос" maxlength="200" autocomplete="off" aria-label="Вопрос помощнику"><button class="btn sm" id="ass" type="button">Отправить</button></div>
+<p class="meta ast" id="asn">Сейчас отвечают только быстрые подсказки.</p>
+</div>
+<button class="asb" id="asb" aria-expanded="false" aria-controls="asp"><b>?</b>Помощник</button>
+</div>
+
+<footer>
+<p><b>Создатель сайта:</b> Боярский Феликс, GitHub: <a href="https://github.com/frewkassss555" target="_blank" rel="noopener">frewkassss555</a></p>
+<p><b>Руководитель:</b> Ключинская Татьяна Васильевна</p>
+<p class="law">Все вычисления и ответы остаются в твоём браузере.</p>
+</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const shf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const sc={g:0,l:0,c:0,p:0,n:0},mx={g:7,l:7,c:7,p:7,n:10};
+function upd(){
+  let t=0,m=0;
+  document.querySelectorAll("section[data-k]:not([hidden])").forEach(s=>{t+=sc[s.dataset.k];m+=mx[s.dataset.k]});
+  $("#csc").textContent="Результат: "+t+" из "+m;
+  const r=m?t/m:0;
+  $("#clv").textContent=r>=.8?"Следователь":r>=.55?"Оперативник":"Стажёр";
+}
+function quiz(box,items,key,tag){
+  let i=0;
+  function show(){
+    if(i>=items.length){
+      box.innerHTML='<div class="res"><span class="stamp ok">Дело закрыто</span> Результат: '+sc[key]+' из '+items.length+'</div>';
+      upd();award("f"+key,20);return;
+    }
+    const t=items[i];
+    box.innerHTML='<div class="meta">'+tag+' '+(i+1)+' из '+items.length+'</div><h3>'+t.t+'</h3><p>'+t.q+'</p><div class="opts">'+shf(t.o.map((x,j)=>[x,j])).map(y=>'<button class="opt" data-j="'+y[1]+'">'+y[0]+'</button>').join("")+'</div><div class="fb" aria-live="polite"></div>';
+    box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+      const j=+b.dataset.j,ok=j===t.a;
+      if(ok){sc[key]++;award(key+i,10)}
+      box.querySelectorAll(".opt").forEach(x=>{x.disabled=true;const k=+x.dataset.j;if(k===t.a)x.classList.add("good");else if(k===j)x.classList.add("bad")});
+      box.querySelector(".fb").innerHTML='<span class="stamp '+(ok?"ok":"")+'">'+(ok?"Верно":"Ошибка")+'</span><p>'+t.e+'</p><button class="btn next">'+(i+1<items.length?"Следующее":"Закрыть дело")+'</button>';
+      const n=box.querySelector(".next");n.focus();
+      n.onclick=()=>{i++;show()};
+    });
+  }
+  show();
+}
+quiz($("#gbox"),[
+{t:"Дело 1. Посылка",q:"СМС: «Ваша посылка задержана. Доплатите 1,50 руб. по ссылке, иначе вернём отправителю». Ты ничего не ждёшь.",o:["Оплачу, это же копейки","Не открываю ссылку, проверяю в приложении почты или спрашиваю родителей","Открою посмотреть, но карту не введу"],a:1,e:"Копейки это приманка: на «оплате» у тебя крадут данные карты. Такие схемы относятся к хищению с использованием компьютерной техники (ст. 212 УК)."},
+{t:"Дело 2. Один пароль на всё",q:"Ты используешь один пароль для игры, почты и соцсети. Сайт игры взломали, список паролей утёк.",o:["Ничего страшного, это же игра","Меняю пароль везде, делаю для каждого сервиса свой, включаю двухэтапную защиту","Добавлю в конец единичку"],a:1,e:"Мошенники сразу пробуют утёкшие пароли на других сайтах. Длинная фраза надёжнее короткого «сложного» пароля, а второй фактор спасает, даже если пароль утёк."},
+{t:"Дело 3. Новый друг",q:"«Ровесник» из другого города быстро переходит к «ты мне нравишься» и просит скинуть фото и сказать, где ты учишься.",o:["Скину, он вроде нормальный","Не даю фото и данные, говорю взрослому, сохраняю переписку и блокирую","Фото скину, школу не назову"],a:1,e:"За «ровесником» может быть кто угодно, а фото потом используют для шантажа. Сохрани переписку как доказательство и расскажи взрослому: виноват тот, кто давит, а не ты."},
+{t:"Дело 4. Звонок «от мамы»",q:"Незнакомый номер, голос как у мамы: «Я в беде, срочно переведи деньги, потом объясню».",o:["Переведу, голос же мамин","Положу трубку, перезвоню маме на её настоящий номер и спрошу кодовое слово","Спрошу, что случилось, и переведу часть"],a:1,e:"Голос можно подделать, а спешка и просьба «никому не говорить» главный признак обмана. Кодовое слово семьи проверяется за секунду (см. раздел «Голос»)."},
+{t:"Дело 5. Скин в подарок",q:"В игровом чате: «Дарю редкий скин! Зайди по ссылке, войди в аккаунт и назови код из СМС для подтверждения».",o:["Код из СМС это ерунда, назову","Никому не называю коды из СМС и не вхожу в аккаунт по чужим ссылкам","Зайду по ссылке, но код не скажу"],a:1,e:"Код из СМС это ключ от твоего аккаунта или денег. «Подарок» с вводом логина классический фишинг: ввёл данные, и аккаунт уже у них."},
+{t:"Дело 6. Выигрыш",q:"Сообщение: «Вы выиграли приз! Чтобы получить, введите номер карты, срок действия, CVC-код и код из СМС».",o:["Введу, вдруг повезёт","Закрою сообщение и расскажу взрослому","Не ввожу: выигрыш, о котором я не знал, и просьба о CVC с кодом из СМС это признаки обмана"],a:2,e:"Настоящему розыгрышу не нужны CVC и коды из СМС: эти данные нужны только для списания денег. Выигрыш в конкурсе, в котором ты не участвовал, почти всегда приманка."},
+{t:"Дело 7. Wi-Fi в кафе",q:"В кафе бесплатный Wi-Fi без пароля. Тебе срочно нужно зайти в банковское приложение.",o:["Лучше использовать мобильный интернет и не вводить пароли в непроверенной сети","Зайду, сеть же рабочая","Зайду, но в режиме инкогнито"],a:0,e:"Открытую сеть может создать кто угодно, в том числе мошенник с похожим названием. Пароли и платежи безопаснее вводить через мобильный интернет, а режим инкогнито от перехвата не защищает."}
+],"g","Дело");
+quiz($("#lbox"),[
+{t:"Раунд 1. Какая ссылка подделка?",q:"",o:["https://mts.by/help","https://mts.by.bonus-pay.ru/win","https://www.mts.by/"],a:1,e:"Настоящий сайт это домен перед первой «/»: здесь это bonus-pay.ru, а mts.by лишь приманка в начале адреса."},
+{t:"Раунд 2. Какая ссылка подделка?",q:"",o:["https://vk.com/id1","https://vk.com@login-help.net/","https://m.vk.com/"],a:1,e:"Всё до значка @ это просто «логин». Реальный сайт стоит после него: login-help.net."},
+{t:"Раунд 3. Какая ссылка подделка?",q:"",o:["https://accounts.google.com/","https://www.goog1e.com/","https://www.google.com/"],a:1,e:"Вместо буквы «l» стоит цифра 1. Подмену одного символа замечают единицы, поэтому читай адрес медленно."},
+{t:"Раунд 4. Какая ссылка подделка?",q:"",o:["https://www.paypal.com/signin","https://paypal-support.com/","https://www.paypal.com/"],a:1,e:"Бренд через дефис это чужой домен. У настоящего сайта название бренда стоит прямо перед .com."},
+{t:"Раунд 5. Какая ссылка подделка?",q:"",o:["https://www.lnstagram.com/","https://www.instagram.com/","https://help.instagram.com/"],a:0,e:"В слове вместо большой «I» стоит маленькая «l»: во многих шрифтах они почти неотличимы. Надёжнее заходить через приложение или закладку."},
+{t:"Раунд 6. Какая ссылка подделка?",q:"",o:["https://www.sber.ru/","https://www.sberbank.ru/","https://www.sber.xyz/pay"],a:2,e:"Необычное окончание домена у известного бренда повод насторожиться: здесь .xyz вместо привычного .ru."},
+{t:"Раунд 7. Какая ссылка подделка?",q:"",o:["https://www.belarusbank.by/","https://secure-belarusbank.by/login","https://www.belarusbank.by/help"],a:1,e:"Приставки вроде secure- или login- перед названием часто означают чужой домен. Сверяй адрес с тем, что напечатан на карте или в договоре."}
+],"l","Раунд");
+quiz($("#cbox"),[
+{t:"Случай 1. Оскорбления в сети",q:"Одноклассник выложил в соцсети пост с оскорблениями в адрес другого ученика, с именем и фото. «Это же просто шутка».",o:["Ничего не будет, это интернет","Это может быть правонарушением: оскорбление, ст. 9.3 КоАП","Максимум школьное замечание"],a:1,e:"Сообщение в неприличной форме, умышленно унижающее честь и достоинство, в соцсетях подпадает под ст. 9.3 КоАП (оскорбление). По общему правилу административная ответственность наступает с 16 лет, а до 14 лет не наступает вовсе."},
+{t:"Случай 2. Ущерб от ребёнка",q:"12-летний сын «из интереса» оформил платную подписку и ещё и причинил вред чужому аккаунту. Кто отвечает за вред?",o:["Сам ребёнок","Его родители (законные представители)","Никто"],a:1,e:"Дети отвечают сами только с 14 лет, а за вред, причинённый младшим ребёнком, отвечают законные представители. Поэтому правовая культура нужна и родителям."},
+{t:"Случай 3. Карта родителей",q:"15-летний взял телефон родителей и без разрешения перевёл деньги со счёта через банковское приложение.",o:["Ничего, это же семья","Только родители накажут","Возможна уголовная ответственность: ст. 212 УК, она наступает с 14 лет"],a:2,e:"Хищение с использованием компьютерной техники (ст. 212 УК) относится к деяниям, за которые отвечают с 14 лет. Брать чужие деньги в приложении без разрешения нельзя, даже у родителей."},
+{t:"Случай 4. Чужое фото",q:"Ты без спроса выложил в паблик фото одноклассника, где он выглядит смешно.",o:["Фото у меня, могу выкладывать","Нужно согласие человека: он вправе потребовать удалить снимок","Можно, если фото не обидное"],a:1,e:"Фото человека относится к его персональным данным, а изображение гражданина охраняется законом. Без согласия публиковать его, как правило, нельзя, и человек вправе требовать удаления. Для детей до 16 лет о распространении данных решает родитель."},
+{t:"Случай 5. Забытый телефон",q:"Друг оставил телефон разблокированным. Ты зашёл в его соцсеть и написал всем «шутку» от его имени.",o:["Это нарушение: доступ к чужому аккаунту и сообщения от чужого имени могут повлечь ответственность","Это шутка, ответственности нет","Отвечает только друг, он же оставил телефон"],a:0,e:"Вмешательство в чужой аккаунт может подпадать под главу 31 УК о компьютерной безопасности (например, ст. 349), а тяжесть зависит от вреда и возраста. Забытый телефон не даёт права им пользоваться."},
+{t:"Случай 6. Покупка аккаунта",q:"В игровом чате незнакомец предлагает редкий аккаунт за копейки и просит перевести деньги ему лично.",o:["Покупаю, это выгодно","Покупаю, но переведу половину","Не покупаю: сделка вне площадки часто обман, а правила сервиса обычно запрещают передавать аккаунты"],a:2,e:"Продавец может исчезнуть с деньгами или вернуть аккаунт себе. Правила сервиса это условия, с которыми ты согласился при регистрации, и у них тоже есть последствия."},
+{t:"Случай 7. Чат-травля",q:"Одноклассники создали чат, где травят девочку из класса, и ты в нём. Сам ты ничего не пишешь, только читаешь.",o:["Я ничего не пишу, значит не виноват","Выйду из чата, сохраню доказательства и расскажу взрослому","Поставлю лайк, чтобы не выделяться"],a:1,e:"Травля держится на зрителях. Не участвуй, сохрани доказательства и расскажи педагогу или родителям. Если ты сам пишешь оскорбления, возможна ответственность, например по ст. 9.3 КоАП."}
+],"c","Случай");
+quiz($("#pbox"),[
+{t:"Ситуация 1. Странное сообщение",q:"Ребёнок показывает, что незнакомец в соцсети просит у него фото. Ваша реакция?",o:["Накричу и отберу телефон","Спокойно поблагодарю, что рассказал, сохраню переписку, заблокирую собеседника, при угрозах обращусь в милицию","Сделаю вид, что ничего не было"],a:1,e:"Если ругать за признание, в следующий раз ребёнок промолчит. Доверие это главная защита: пусть он знает, что к вам можно прийти с любой проблемой."},
+{t:"Ситуация 2. Контроль",q:"Вы хотите тайно установить программу, которая читает переписку ребёнка.",o:["Установлю тайно","Договорюсь о правилах вместе, объясню риски и включу возрастные настройки сервисов","Ничего не буду делать, сам разберётся"],a:1,e:"Тайная слежка рушит доверие, а договорённости и настройки работают лучше. У многих сервисов есть возрастные ограничения, и их стоит учитывать."},
+{t:"Ситуация 3. Фото детей",q:"Вы хотите выложить в соцсеть снимки со школьной линейки, где видны лица одноклассников вашего ребёнка.",o:["Выложу, снимки красивые","Не буду выкладывать чужих детей без согласия их родителей","Выложу, но без подписей"],a:1,e:"Фото и данные ребёнка это персональные данные, их защищает закон № 99-З, и до 16 лет решения о распространении принимает родитель. Чужих детей без согласия их родителей лучше не показывать."},
+{t:"Ситуация 4. Звонок из банка",q:"Вам звонят «из службы безопасности банка» и просят назвать код из СМС, чтобы «защитить» счёт.",o:["Назову, чтобы защитить деньги","Положу трубку и перезвоню в банк по номеру на карте","Назову только первые цифры"],a:1,e:"Код из СМС это ключ к вашим деньгам, и банк не просит его называть. Мошенники давят срочностью, поэтому остановитесь и перезвоните сами."},
+{t:"Ситуация 5. Телефон до ночи",q:"Ребёнок сидит в телефоне до ночи и не хочет ложиться.",o:["Заберу телефон и спрячу","Договорюсь о времени без экранов для всей семьи и сам подам пример","Пусть решает сам"],a:1,e:"Правила работают лучше, когда они общие и объяснены. Если вечером телефон лежит и у родителей, это не воспринимается как наказание."},
+{t:"Ситуация 6. Покупки в игре",q:"С вашей карты списали крупную сумму за внутриигровые покупки: ребёнок привязал карту.",o:["Спокойно выясню, что произошло, свяжусь с банком и поддержкой сервиса, отвяжу карту и включу подтверждение платежей","Накричу и запрещу игры навсегда","Не буду обращать внимания"],a:0,e:"Сначала решите денежный вопрос: банк и поддержка сервиса иногда помогают, если действовать быстро. Потом настройте защиту платежей и обсудите правила."},
+{t:"Ситуация 7. Травля в чате",q:"Ребёнок вдруг не хочет идти в школу, а в чате класса его высмеивают.",o:["Скажу не обращать внимания","Напишу родителям обидчиков в общий чат","Сохраню скриншоты, выслушаю ребёнка и поговорю с классным руководителем и школой"],a:2,e:"Совет не обращать внимания обесценивает проблему, а публичные обвинения обостряют конфликт. Доказательства, спокойный разговор и обращение в школу дают результат."}
+],"p","Ситуация");
+// досье
+(function(){
+  const n=new Date(),nav=navigator;
+  const ua=nav.userAgent;
+  const os=/Windows/.test(ua)?"Windows":/Android/.test(ua)?"Android":/iPhone|iPad|iOS/.test(ua)?"iOS":/Mac/.test(ua)?"macOS":/Linux/.test(ua)?"Linux":"неизвестна";
+  const br=/Edg\//.test(ua)?"Edge":/OPR\//.test(ua)?"Opera":/Firefox\//.test(ua)?"Firefox":/Chrome\//.test(ua)?"Chrome":/Safari\//.test(ua)?"Safari":"неизвестен";
+  let tz="неизвестен";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone}catch(e){}
+  const rows=[["Система",os],["Браузер",br],["Язык",nav.language||"—"],["Часовой пояс",tz],["Экран",screen.width+"×"+screen.height],["Сейчас у тебя",n.toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"})+(n.getHours()<6||n.getHours()>=23?", поздно, а ты не спишь":"")],["Интернет",nav.onLine?"подключён":"нет"]];
+  $("#dos").innerHTML=rows.map((r,i)=>'<li style="animation-delay:'+(i*0.18)+'s"><span>'+r[0]+'</span><span>'+r[1]+'</span></li>').join("");
+})();
+const COMMON=["123456","12345678","123456789","qwerty","password","111111","qwerty123","1q2w3e","admin","пароль","йцукен","iloveyou","000000","abc123","12345","1234567890"];
+function fmt(s){
+  if(s<1)return "меньше секунды";
+  let v=s;
+  for(const [k,n] of [[60,"сек."],[60,"мин."],[24,"ч."],[365,"дн."]]){if(v<k)return Math.round(v)+" "+n;v/=k}
+  if(v<1e3)return Math.round(v)+" лет";
+  if(v<1e6)return Math.round(v/1e3)+" тыс. лет";
+  if(v<1e9)return Math.round(v/1e6)+" млн лет";
+  if(v<5e9)return Math.round(v/1e9)+" млрд лет";
+  return "дольше, чем существует Земля";
+}
+$("#pw").oninput=()=>{
+  const p=$("#pw").value,t=$("#term");
+  if(!p){t.textContent="> жду пароль...";return}
+  let pool=0;
+  if(/[a-z]/.test(p))pool+=26;
+  if(/[A-Z]/.test(p))pool+=26;
+  if(/[а-яё]/i.test(p))pool+=33;
+  if(/\d/.test(p))pool+=10;
+  if(/[^a-zA-Zа-яёА-ЯЁ\d]/.test(p))pool+=33;
+  const hit=COMMON.includes(p.toLowerCase());
+  const s=hit?0:Math.pow(pool,p.length)/2/1e10;
+  let o="> ищу в словаре частых паролей... "+(hit?"НАЙДЕН":"нет")+"\n> знаков: "+p.length+", алфавит: "+pool+"\n> перебор: 10 млрд попыток в секунду (мощный компьютер)\n> взлом займёт: "+fmt(s)+"\n";
+  o+=s<3.15e7?"> вердикт: ПЛОХО. Такой пароль взломают быстро.":s<3.15e12?"> вердикт: неплохо, но добавь длины.":"> вердикт: ХОРОШО. Длинные фразы побеждают.";
+  t.textContent=o;
+  if(s>=3.15e12)award("pw",10);
+};
+$("#pw").oninput();
+// голос
+$("#vbtn").onclick=()=>{
+  award("voice",5);const m=$("#vmsg");
+  if(!("speechSynthesis" in window)){m.textContent="Твой браузер не умеет озвучивать текст, но мошенникам это не мешает: у них профессиональные программы.";return}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance($("#vt").value);
+  u.lang="ru-RU";
+  const v=speechSynthesis.getVoices().find(x=>/^ru/i.test(x.lang));
+  if(v)u.voice=v;
+  u.rate=1.05;
+  speechSynthesis.speak(u);
+  m.textContent="Это был простой синтезатор. Настоящая подделка звучит как живой человек. Убедись, что звук включён.";
+};
+const A=["Жёлтый","Трактор","Сейф","Банан","Маяк","Ёжик","Ракета","Компас","Арбуз","Якорь","Бублик","Фонарь"];
+const B=["Пингвин","Утюг","Вулкан","Самовар","Кактус","Лифт","Барабан","Ластик","Пельмень","Скворец","Мост","Шмель"];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+$("#cwb").onclick=()=>{$("#cw").textContent=pick(A)+"-"+pick(B);award("cw",5)};
+// паспорт
+$("#cdt").textContent=new Date().toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"});
+$("#nm").oninput=e=>{$("#cnm").textContent=e.target.value.trim()||"\u00a0"};
+$("#pr").onclick=()=>window.print();
+$("#cp").onclick=()=>{const u=location.href.split("#")[0]+"#school",m=$("#cpm");(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>m.textContent="Скопировано",()=>m.textContent=u)};
+const R=["school","parent","teacher"];
+function setRole(r){
+  const ok=R.includes(r);
+  $("#gate").hidden=ok;$("#gh").hidden=ok;$("#nv").hidden=!ok;$("#tbh").hidden=ok;
+  document.querySelectorAll("main section").forEach(s=>{s.hidden=!ok||!s.dataset.r.split(" ").includes(r)});
+  if(ok)$("#nv").innerHTML=[...document.querySelectorAll("main section:not([hidden])")].map(s=>'<a href="#'+s.id+'" data-t="'+s.id+'">'+s.querySelector("h2").textContent.split(":")[0]+'</a>').join("")+'<a href="#gate" id="chg">Сменить роль</a>';
+  upd();
+}
+$("#nv").onclick=e=>{
+  const a=e.target.closest("a");if(!a)return;e.preventDefault();
+  if(a.id==="chg"){location.hash="";setRole("");window.scrollTo(0,0)}
+  else document.getElementById(a.dataset.t).scrollIntoView();
+};
+document.querySelectorAll(".tile").forEach(b=>b.onclick=()=>{location.hash=b.dataset.role;setRole(b.dataset.role);document.querySelector("main section:not([hidden])").scrollIntoView()});
+addEventListener("hashchange",()=>setRole(location.hash.slice(1)));
+setRole(location.hash.slice(1));
+// профиль
+const AV=["repeating-linear-gradient(45deg,#c9301e 0 10px,#f2d21b 10px 20px)","repeating-conic-gradient(#151412 0 25%,#f2d21b 0 50%) 0 0/24px 24px","linear-gradient(135deg,#f2d21b 50%,#151412 50%)","repeating-linear-gradient(90deg,#151412 0 6px,#efe8d6 6px 12px)","linear-gradient(#c9301e 0 50%,#f2d21b 50% 100%)","repeating-linear-gradient(0deg,#c9301e 0 8px,#151412 8px 16px)"];
+const RK=[[0,"Новичок"],[60,"Стажёр"],[140,"Оперативник"],[240,"Следователь"],[340,"Эксперт"]];
+let S={nick:"",av:0,photo:"",pts:0,got:{}};
+try{Object.assign(S,JSON.parse(localStorage.getItem("d14")||"{}"))}catch(e){}
+function save(){try{localStorage.setItem("d14",JSON.stringify(S))}catch(e){}}
+function setAv(el){
+  if(S.photo){el.style.background="url("+S.photo+") center/cover";el.textContent=""}
+  else{el.style.background=AV[S.av]||AV[0];el.textContent=(S.nick||"?").charAt(0).toUpperCase()}
+}
+function render(pop){
+  setAv($("#av1"));setAv($("#av2"));
+  $("#pfn").textContent=S.nick||"Гость";$("#pfs").textContent=S.pts;$("#pp").textContent=S.pts;
+  let r=0;RK.forEach((x,i)=>{if(S.pts>=x[0])r=i});
+  const nx=RK[r+1];
+  $("#prk").textContent=RK[r][1];
+  $("#pbr").style.width=(nx?(S.pts-RK[r][0])/(nx[0]-RK[r][0])*100:100)+"%";
+  $("#pnx").textContent=nx?"До звания «"+nx[1]+"»: "+(nx[0]-S.pts):"Высшее звание получено";
+  document.querySelectorAll("#avs button").forEach((b,i)=>b.setAttribute("aria-pressed",!S.photo&&i===S.av));
+  if(!$("#nm").value.trim())$("#cnm").textContent=S.nick||"\u00a0";
+  bdRender();boardRender();if(pop){const b=$("#pfb");b.classList.add("pop");setTimeout(()=>b.classList.remove("pop"),700)}
+}
+const bk=(p,n)=>Array.from({length:n},(_,i)=>p+i).every(k=>S.got[k]);
+const BD=[
+["Первый шаг","Заработать первые баллы",()=>S.pts>0],
+["Охотник за доменами","Все 7 раундов «Ссылка или подделка» верно",()=>bk("l",7)],
+["Раскрыл все дела","Все 7 дел в «Расследовании» верно",()=>bk("g",7)],
+["Юрист-новичок","Все 7 случаев в «Суде» верно",()=>bk("c",7)],
+["Ловец улик","Найти все 6 улик в кадре",()=>!!S.got.lka],
+["Быстрые пальцы","8 верных ответов в «Инбоксе»",()=>!!S.got.ibf],
+["Не попался","Поймать мошенника во всех трёх переписках",()=>["csa","csb","csc"].every(k=>S.got[k])],
+["Крепкий пароль","Придумать сильный пароль во «Взломщике»",()=>!!S.got.pw],
+["Свой в семье","Озвучить текст и получить кодовое слово",()=>!!(S.got.voice&&S.got.cw)],
+["Знает правила","Все 10 действий в «Можно или нельзя» верно",()=>bk("mn",10)],
+["Лаборант","Пройти все три комнаты лаборатории",()=>["labfe","labfm","labfh"].every(k=>S.got[k])],
+["Закрыл дыры","Пройти тяжёлую комнату лаборатории",()=>!!S.got.labfh],
+["Главарь пойман","Собрать все шесть улик на «Доске дела»",()=>!!S.got.boss]
+];
+function toast(t){const e=$("#ts");e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>{e.hidden=true},4000)}
+function bdRender(){
+  const e=$("#bds");if(!e)return;
+  e.textContent="";let n=0;const names=[];
+  BD.forEach(b=>{
+    const ok=b[2](),d=document.createElement("div"),t=document.createElement("b"),s=document.createElement("span");
+    d.className="bd2"+(ok?" on":"");t.textContent=ok?b[0]:"???";s.textContent=b[1];
+    d.append(t,s);e.append(d);
+    if(ok){n++;names.push(b[0])}
+  });
+  $("#bdn").textContent="Штампы: "+n+" из "+BD.length;
+  $("#cbd").textContent=names.length?"Штампы: "+names.join(", "):"";
+}
+function bdCheck(){
+  S.bd=S.bd||[];
+  const nw=BD.filter(b=>b[2]()&&!S.bd.includes(b[0]));
+  if(nw.length){nw.forEach(b=>S.bd.push(b[0]));save();toast("Новый штамп: "+nw.map(b=>b[0]).join(", "));bdRender()}
+}
+const cnt=(p,n)=>Array.from({length:n},(_,i)=>p+i).filter(k=>S.got[k]).length;
+const CL=[
+{t:"Сайт-двойник",sec:"links",n:"«Ссылка или подделка»",p:()=>cnt("l",7),need:5,tot:7,clue:"Мошенники держат сайты-двойники на дешёвых доменах вроде tihiy-dozvon.top. Один и тот же адрес мелькает в разных ссылках."},
+{t:"Голос в трубке",sec:"voice",n:"«Голос»",p:()=>(S.got.voice?1:0)+(S.got.cw?1:0),need:2,tot:2,clue:"Голос «родственника» собран из голосового сообщения. Так группа получила позывной «Тихий Дозвон»."},
+{t:"Фальшивый друг",sec:"chat",n:"«Переписка с мошенником»",p:()=>["csa","csb","csc"].filter(k=>S.got[k]).length,need:2,tot:3,clue:"Через взломанные аккаунты друзей они просят мелкие срочные переводы, чтобы никто не успел задуматься."},
+{t:"След в кадре",sec:"leak",n:"«Улика в кадре»",p:()=>cnt("lk",6),need:4,tot:6,clue:"Адреса и расписания они берут из постов: геометки, бейджи и подписи вроде «одна дома»."},
+{t:"Дыра в портале",sec:"lab",n:"«Лаборатория»",p:()=>["labfe","labfm","labfh"].filter(k=>S.got[k]).length,need:1,tot:3,clue:"Школьные порталы с открытой базой кормят схему именами и телефонами. Одна открытая директория, и данные уже у них."},
+{t:"Шифровка в инбоксе",sec:"inbox",n:"«Инбокс 60 секунд»",p:()=>cnt("ib",13),need:6,tot:13,clue:"Среди обычных СМС они прячут приглашения «подзаработать» и «встретиться». Именно тут схема выходит к людям."}
+];
+function boardDraw(){
+  const sv=$("#bdl"),bd=$("#bdb");if(!sv||!bd)return;
+  sv.textContent="";
+  const R=bd.getBoundingClientRect(),cs=[...document.querySelectorAll("#bdc .bdk")];
+  if(!R.width||cs.length<2)return;
+  const P=cs.map(e=>{const r=e.getBoundingClientRect();return [r.left-R.left+r.width/2,r.top-R.top,e.dataset.ok==="1"]});
+  for(let i=0;i<P.length-1;i++){
+    const l=document.createElementNS("http://www.w3.org/2000/svg","line"),on=P[i][2]&&P[i+1][2];
+    l.setAttribute("x1",P[i][0]);l.setAttribute("y1",P[i][1]);l.setAttribute("x2",P[i+1][0]);l.setAttribute("y2",P[i+1][1]);
+    l.setAttribute("stroke","#c9301e");l.setAttribute("stroke-width",on?4:2);
+    if(!on){l.setAttribute("stroke-dasharray","6 6");l.setAttribute("opacity",".55")}
+    sv.appendChild(l);
+  }
+}
+function boardRender(){
+  const c=$("#bdc");if(!c)return;
+  c.textContent="";let done=0;
+  CL.forEach(x=>{
+    const n=x.p(),ok=n>=x.need;if(ok)done++;
+    const d=document.createElement("div"),b=document.createElement("b"),p=document.createElement("p"),m=document.createElement("p"),g=document.createElement("button");
+    d.className="bdk"+(ok?"":" lock");d.dataset.ok=ok?"1":"";
+    b.textContent=x.t;
+    p.textContent=ok?x.clue:"Улика закрыта. Нужно пройти раздел "+x.n+".";
+    m.className="meta";m.textContent="Прогресс: "+n+" из "+x.tot+", нужно "+x.need;
+    g.type="button";g.className="btn sm";g.textContent="К разделу";
+    g.onclick=()=>{const s=document.getElementById(x.sec);if(s&&!s.hidden)s.scrollIntoView()};
+    d.append(b,p,m,g);c.append(d);
+  });
+  const all=done===CL.length,d=document.createElement("div"),b=document.createElement("b"),p=document.createElement("p");
+  d.className="bdk boss"+(all?"":" lock");d.dataset.ok=all?"1":"";
+  b.textContent=all?"Главарь найден":"Главарь: ???";
+  p.textContent=all?"Нить привела к нему. Читай ниже.":"Собери все шесть улик, и нить приведёт к главарю.";
+  d.append(b,p);c.append(d);
+  const f=$("#bdf");f.textContent="";
+  if(all){
+    award("boss",50);
+    const s=document.createElement("span"),h=document.createElement("h3"),t=document.createElement("p");
+    s.className="stamp ok";s.textContent="Дело закрыто";
+    h.textContent="Главарь «Тихого Дозвона» пойман";
+    t.textContent="Это не хакер-гений. Вся схема держалась на двух вещах: люди спешат и не проверяют. Ты собрал шесть улик и разорвал цепочку. Запомни три правила: проверяй адрес и человека другим способом, не называй коды и пароли, а при угрозах сразу иди ко взрослому.";
+    f.append(s,h,t);
+  }
+  boardDraw();
+}
+if(window.ResizeObserver)new ResizeObserver(boardDraw).observe($("#bdb"));
+addEventListener("resize",boardDraw);
+function award(id,n){if(S.got[id])return;S.got[id]=1;S.pts+=n;save();render(true);bdCheck()}
+$("#avs").innerHTML=AV.map((a,i)=>'<button type="button" aria-label="Аватар '+(i+1)+'" data-i="'+i+'" style="background:'+a+'"></button>').join("");
+$("#avs").onclick=e=>{const b=e.target.closest("button");if(!b)return;S.av=+b.dataset.i;S.photo="";save();render()};
+$("#pnk").value=S.nick;
+$("#pnk").oninput=e=>{S.nick=e.target.value.trim().slice(0,16);save();render()};
+$("#pup").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement("canvas");c.width=c.height=96;const m=Math.min(im.width,im.height);c.getContext("2d").drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,96,96);S.photo=c.toDataURL("image/jpeg",.8);save();render()};im.src=r.result};r.readAsDataURL(f)};
+$("#prs").onclick=()=>{S={nick:"",av:0,photo:"",pts:0,got:{}};save();$("#pnk").value="";render()};
+function tp(o){$("#pfp").hidden=!o;$("#pfb").setAttribute("aria-expanded",o)}
+$("#pfb").onclick=()=>tp($("#pfp").hidden);
+document.addEventListener("click",e=>{if(!$("#pf").contains(e.target))tp(false)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){tp(false);$("#pfb").focus()}});
+$("#nm").oninput=()=>{const v=$("#nm").value.trim();$("#cnm").textContent=v||S.nick||"\u00a0"};
+render();
+const LK=["Геометка и адрес: чужой человек узнаёт, где она живёт.","Вывеска: понятно, в какой школе она учится.","Бейдж: имя и класс. По ним её находят в списках и пишут «от школы».","Расписание: видно, когда она выходит из школы и где бывает по вечерам.","Ключ на виду: бери и заходи. Ключи на видном месте не оставляют.","Подпись: она сама сообщила всем, что дома одна и когда вернутся родители."];
+const lk=new Set();
+document.querySelectorAll("#leak .sp").forEach(b=>b.onclick=()=>{
+  const i=+b.dataset.i;if(lk.has(i))return;lk.add(i);b.classList.add("on");
+  const li=document.createElement("li");li.textContent=LK[i];$("#lkl").appendChild(li);
+  $("#lkc").textContent="Найдено "+lk.size+" из 6";
+  award("lk"+i,10);
+  if(lk.size===6){award("lka",20);$("#lkd").hidden=false}
+});
+$("#lkr").onclick=()=>{const c=$("#leak .card");c.classList.toggle("ret");$("#lkr").textContent=c.classList.contains("ret")?"Вернуть как было":"Заретушировать всё"};
+const MN=[
+["Назвать сотруднику «банка» по телефону код из СМС",0,"Банк не просит называть код из СМС. Это ключ к твоим деньгам."],
+["Включить двухэтапную защиту в почте",1,"Второй шаг защиты спасает, даже если пароль утёк."],
+["Выложить фото одноклассника без его согласия",0,"Фото человека относится к его персональным данным, нужно согласие."],
+["Сделать паролём длинную фразу из нескольких слов",1,"Длинная фраза надёжнее короткого «сложного» пароля."],
+["Зайти в чужой аккаунт друга «для шутки»",0,"Доступ к чужому аккаунту без разрешения может повлечь ответственность, даже если это шутка."],
+["Заблокировать незнакомца, который пишет гадости, и пожаловаться на него",1,"Блок останавливает общение, а жалоба помогает сервису разобраться с таким аккаунтом."],
+["Рассказать взрослому, если тебя травят в чате",1,"Взрослый поможет и сохранить доказательства. Молчать не нужно."],
+["Вводить данные карты на сайте, который открыт по http без защиты",0,"Без https данные идут открыто. Платить на таком сайте нельзя."],
+["Скачать «взломанную» игру по ссылке из чата",0,"Такие файлы часто несут вирусы и крадут аккаунты. Приложения ставь из официальных магазинов."],
+["Проверить адрес сайта, прежде чем вводить пароль",1,"Подмена адреса главный трюк фишинга. Проверь домен, а потом вводи."]
+];
+let mi=0,mord=[],mdone=false;
+function mnShow(){
+  const cd=$("#mncd"),f=$("#mnf");
+  f.textContent="";cd.style.transform="";cd.style.opacity="";
+  if(mi>=MN.length){
+    cd.hidden=true;$("#mnc").textContent="";
+    const s=document.createElement("span");s.className="stamp ok";s.textContent="Готово";
+    const p=document.createElement("p");p.textContent="Результат: "+sc.n+" из "+MN.length+".";
+    const b=document.createElement("button");b.type="button";b.className="btn";b.textContent="Пройти ещё раз";b.onclick=mnStart;
+    f.append(s,p,b);upd();award("mnf",20);return;
+  }
+  cd.hidden=false;cd.textContent=MN[mord[mi]][0];
+  $("#mnc").textContent="Действие "+(mi+1)+" из "+MN.length+". Верно: "+sc.n;
+}
+function mnStart(){mord=shf(MN.map((_,i)=>i));mi=0;sc.n=0;mdone=false;upd();mnShow()}
+function mnAns(v){
+  if(mdone||mi>=MN.length)return;mdone=true;
+  const i=mord[mi],ok=MN[i][1]===v,f=$("#mnf");
+  if(ok){sc.n++;award("mn"+i,10);upd()}
+  $("#mncd").style.transform="";$("#mncd").style.opacity=".6";
+  f.textContent="";
+  const s=document.createElement("span");s.className="stamp"+(ok?" ok":"");s.textContent=ok?"Верно":"Неверно";
+  const p=document.createElement("p");p.textContent=(MN[i][1]?"Можно. ":"Нельзя. ")+MN[i][2];
+  const b=document.createElement("button");b.type="button";b.className="btn";b.textContent=mi<MN.length-1?"Следующее":"Закончить";
+  b.onclick=()=>{mi++;mdone=false;mnShow()};
+  f.append(s,p,b);b.focus();
+  $("#mnc").textContent="Действие "+(mi+1)+" из "+MN.length+". Верно: "+sc.n;
+}
+(function(){
+  const cd=$("#mncd");let sx=0,sy=0,dr=false;
+  const hit=(z,cx,cy)=>{const r=z.getBoundingClientRect();return cx>r.left&&cx<r.right&&cy>r.top&&cy<r.bottom};
+  const ctr=()=>{const r=cd.getBoundingClientRect();return [r.left+r.width/2,r.top+r.height/2]};
+  cd.onpointerdown=e=>{if(mdone)return;dr=true;sx=e.clientX;sy=e.clientY;cd.setPointerCapture(e.pointerId);cd.classList.add("drag")};
+  cd.onpointermove=e=>{
+    if(!dr)return;
+    cd.style.transform="translate("+(e.clientX-sx)+"px,"+(e.clientY-sy)+"px)";
+    const [cx,cy]=ctr();
+    $("#zn").classList.toggle("hot",hit($("#zn"),cx,cy));$("#zy").classList.toggle("hot",hit($("#zy"),cx,cy));
+  };
+  cd.onpointerup=()=>{
+    if(!dr)return;dr=false;cd.classList.remove("drag");
+    const [cx,cy]=ctr();
+    $("#zn").classList.remove("hot");$("#zy").classList.remove("hot");
+    if(hit($("#zn"),cx,cy))mnAns(0);else if(hit($("#zy"),cx,cy))mnAns(1);else cd.style.transform="";
+  };
+  cd.onpointercancel=()=>{dr=false;cd.classList.remove("drag");cd.style.transform=""};
+  cd.onkeydown=e=>{if(e.key==="ArrowLeft")mnAns(0);if(e.key==="ArrowRight")mnAns(1)};
+  [["#zn",0],["#zy",1]].forEach(z=>{$(z[0]).onclick=()=>mnAns(z[1]);$(z[0]).onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();mnAns(z[1])}}});
+  mnStart();
+})();
+const CS={
+a:{who:"Макс (онлайн)",N:{
+ s:{m:["Привет! Это Макс. Я в беде, у меня заблокировали карту.","Переведи 50 рублей на эту карту, завтра верну!"],o:[["Конечно, давай номер карты","l1"],["Позвоню тебе, ответь","b"],["Напишу Максу в другом мессенджере или позвоню на его обычный номер","w1"]]},
+ b:{m:["Не могу говорить, микрофон сломан. Давай в чате, быстро!"],o:[["Ладно, перевожу","l1"],["Спрошу то, что знаем только мы: как зовут нашего классного руководителя?","c"]]},
+ c:{m:["Не помню... Пришли деньги, потом всё объясню!"],o:[["Ладно, переведу","l1"],["Это не Макс. Блокирую и предупреждаю Макса и друзей","w2"]]},
+ l1:{e:"l",t:"Деньги ушли мошеннику: аккаунт друга был взломан. Срочная просьба о переводе и отказ говорить голосом главные признаки. Сначала проверь человека другим способом."},
+ w1:{e:"w",t:"Ты проверил друга по другому каналу. Макс ответил, что аккаунт взломали, и ты предупредил остальных."},
+ w2:{e:"w",t:"Вопрос, на который знает ответ только друг, выдал обман. Ты заблокировал мошенника и предупредил друзей."}}},
+b:{who:"Даритель скинов",N:{
+ s:{m:["Привет! Дарю редкий скин за подписку.","Зайди по ссылке и войди через свой аккаунт: skin-gift.top/login"],o:[["Открою ссылку и войду","l1"],["Назову логин и пароль, зайди сам","l2"],["Ссылку не открываю, отправь скин через магазин игры","b"]]},
+ b:{m:["Только по ссылке! Предложение исчезнет через 5 минут!"],o:[["Ладно, успею, захожу","l1"],["Спешка признак обмана. Блокирую и жалуюсь на аккаунт","w1"]]},
+ l1:{e:"l",t:"Ты ввёл данные на фальшивом сайте, и аккаунт украли. Вход по чужой ссылке и спешка классический фишинг."},
+ l2:{e:"l",t:"Логин и пароль никому не называют: с ними мошенник просто забирает аккаунт."},
+ w1:{e:"w",t:"Подарки по чужим ссылкам и со сроком «5 минут» это обман. Блок и жалоба защитили и тебя, и других игроков."}}},
+c:{who:"«Служба безопасности банка»",N:{
+ s:{m:["Здравствуйте! Служба безопасности банка.","По вашей карте идёт подозрительная операция. Назовите код из СМС, чтобы мы её отменили."],o:[["Назову код","l1"],["Спрошу фамилию и номер сотрудника","b"],["Положу трубку и перезвоню в банк по номеру с карты","w1"]]},
+ b:{m:["Это сейчас неважно! Деньги списывают прямо сейчас, код нужен немедленно!"],o:[["Тогда назову","l1"],["Давление и спешка обман. Кладу трубку и звоню в банк сам","w1"]]},
+ l1:{e:"l",t:"Код из СМС открыл мошенникам доступ к деньгам. Банк не просит называть коды, а звонящему не стоит верить, даже если он знает твоё имя."},
+ w1:{e:"w",t:"Ты завершил разговор и перезвонил по номеру с карты. Так проверяют любого, кто звонит от имени банка."}}}
+};
+let ck="",ctk=0;
+function csStat(){$("#csn").textContent="Поймано мошенников: "+["a","b","c"].filter(k=>S.got["cs"+k]).length+" из 3"}
+function csBub(t,c){const d=document.createElement("div"),m=$("#cm");d.className="msg "+c;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
+function csOpen(k){
+  ck=k;ctk++;
+  document.querySelectorAll("#csb button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.s===k));
+  $("#cm").textContent="";$("#co").textContent="";$("#cty").hidden=true;
+  $("#cwh").textContent="Мессенджер: "+CS[k].who;
+  csGo("s");
+}
+function csGo(id){
+  const n=CS[ck].N[id],o=$("#co"),tk=ctk;
+  o.textContent="";
+  if(n.e){
+    const win=n.e==="w",s=document.createElement("span"),p=document.createElement("p"),b=document.createElement("button");
+    s.className="stamp"+(win?" ok":"");s.textContent=win?"Мошенник пойман":"Попался";
+    p.textContent=n.t;b.type="button";b.className="btn";b.textContent="Пройти заново";b.onclick=()=>csOpen(ck);
+    o.append(s,p,b);
+    if(win){award("cs"+ck,20);csStat()}
+    return;
+  }
+  let i=0;
+  const step=()=>{
+    if(tk!==ctk)return;
+    if(i<n.m.length){
+      $("#cty").hidden=false;
+      setTimeout(()=>{if(tk!==ctk)return;$("#cty").hidden=true;csBub(n.m[i++],"bot");step()},650);
+    }else{
+      n.o.forEach(x=>{
+        const b=document.createElement("button");b.type="button";b.className="opt";b.textContent=x[0];
+        b.onclick=()=>{csBub(x[0],"me");csGo(x[1])};
+        o.append(b);
+      });
+    }
+  };
+  step();
+}
+document.querySelectorAll("#csb button").forEach(b=>b.onclick=()=>csOpen(b.dataset.s));
+$("#cm").innerHTML='<p class="meta">Выбери историю выше, и переписка начнётся.</p>';
+csStat();
+const IB=[
+["Школа №27","Завтра уроки начинаются с 9:30 из-за ремонта в кабинетах.",0,"Обычное сообщение: нет ссылок, денег и просьб."],
+["СМС","Ваша посылка задержана. Доплатите 1,50 руб. по ссылке: post-pay.top/p",1,"Мелкая доплата по чужой ссылке приманка."],
+["Друг, Артём","Привет, сделал физику. Скинуть фото?",0,"Обычное общение с другом."],
+["«Банк»","Карта заблокирована! Срочно подтвердите данные: bank-secure.ru",1,"Срочность и чужой домен: фишинг."],
+["Новый знакомый из игры","Давай встретимся после школы, я старше. Только родителям не говори.",2,"Просьба скрыть от родителей и встреча с незнакомцем: сразу к взрослым."],
+["Письмо","Вы выиграли смартфон! Введите данные карты для получения приза.",1,"Выигрыш, в котором ты не участвовал: ловушка."],
+["Мама","Забери брата из секции в 17:00.",0,"Привычное сообщение от родителей."],
+["Макс, новый номер","Это Макс, срочно переведи 30 рублей на карту, потом верну.",1,"Срочная просьба о деньгах с нового номера: сначала проверь другим способом."],
+["Аноним","Пришли свои фото, или я выложу твою переписку всем.",2,"Это шантаж. Сохрани переписку и сразу расскажи взрослому."],
+["Классный руководитель","Напоминаю: в пятницу родительское собрание в 18:00.",0,"Обычное школьное объявление."],
+["Незнакомец","Хочешь 500 рублей за день? Просто прими посылку и передай дальше.",2,"Так вовлекают в схемы с чужими деньгами и посылками. Это серьёзно, нужны взрослые."],
+["СМС","Подтвердите вход в аккаунт: acc-verify.cc, иначе блокировка через 10 минут.",1,"Угроза и срок: признаки фишинга."],
+["Незнакомец","Ты классный! Давай перейдём в другой мессенджер, там без лишних глаз.",2,"Попытка увести общение в закрытое место. Покажи взрослому."]
+];
+let ibq=[],ibi=0,ibk=0,iba=[],ibv=null,ibon=false;
+function ibEnd(why){
+  clearInterval(ibv);ibon=false;
+  $("#ibo").querySelectorAll("button").forEach(b=>b.disabled=true);
+  $("#ibm").textContent="";
+  const r=$("#ibr");r.textContent="";
+  const s=document.createElement("span");s.className="stamp"+(ibk>=8?" ok":"");s.textContent=why;
+  const p=document.createElement("p");p.textContent="Разобрано: "+iba.length+", верно: "+ibk+".";
+  r.append(s,p);
+  const bad=iba.filter(a=>!a.ok);
+  if(bad.length){
+    const h=document.createElement("p");h.className="meta";h.textContent="Разбор ошибок:";r.append(h);
+    bad.forEach(a=>{const d=document.createElement("p");d.textContent=a.m[0]+": «"+a.m[1]+"». Правильно: "+["нормально","ловушка","звони родителям"][a.m[2]]+". "+a.m[3];r.append(d)});
+  }
+  if(ibk>=8)award("ibf",20);
+  $("#ibs").hidden=false;$("#ibs").textContent="Ещё раз";
+}
+function ibShow(){
+  if(ibi>=ibq.length){ibEnd("Всё разобрано");return}
+  const m=ibq[ibi],e=$("#ibm");e.textContent="";
+  const a=document.createElement("div"),b=document.createElement("p");
+  a.className="meta";a.textContent="От: "+m[0];b.textContent=m[1];
+  e.append(a,b);
+  $("#ibc").textContent="Осталось: "+(ibq.length-ibi);
+}
+function ibAns(v){
+  if(!ibon)return;
+  const m=ibq[ibi],ok=m[2]===v;
+  iba.push({m:m,ok:ok});
+  if(ok){ibk++;award("ib"+IB.indexOf(m),5)}
+  $("#ibf").textContent=ok?"Верно":"Неверно: "+m[3];
+  ibi++;ibShow();
+}
+function ibStart(){
+  ibq=shf(IB);ibi=0;ibk=0;iba=[];ibon=true;
+  $("#ibr").textContent="";$("#ibf").textContent="";$("#ibs").hidden=true;
+  $("#ibo").querySelectorAll("button").forEach(b=>b.disabled=false);
+  const t0=Date.now();
+  clearInterval(ibv);
+  ibv=setInterval(()=>{
+    const left=60-(Date.now()-t0)/1000;
+    $("#ibt").textContent=Math.max(0,Math.ceil(left));
+    $("#ibb").style.width=Math.max(0,left/60*100)+"%";
+    if(left<=0)ibEnd("Время вышло");
+  },200);
+  ibShow();
+}
+$("#ibs").onclick=ibStart;
+$("#ibo").onclick=e=>{const b=e.target.closest("button[data-v]");if(b)ibAns(+b.dataset.v)};
+document.addEventListener("keydown",e=>{
+  if(!ibon||e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA")return;
+  if(e.key==="1"||e.key==="2"||e.key==="3")ibAns(+e.key-1);
+});
+$("#ibm").textContent="Нажми «Начать», когда будешь готов.";
+// лаборатория
+const nz=s=>s.toLowerCase().replace(/[«»"'.!?,\s]/g,"");
+const PR={101:"Иван П., 9А",102:"Ольга С., 9Б",103:"Артём Л., 8А",104:"Кира В., 8Б",105:"Саша, 9А (это ты)",106:"Мария Т., 9А, тел. +375 29 000-00-01",107:"Глеб Н., 10Б"};
+const LB={
+e:{n:"Лёгкий: Основы",f:"DELO14{easy_clean_domain}",T:[
+{q:"Адрес https://shop.by.pay-check.ru/login. Какой в нём настоящий домен? (две последние части перед первой «/»)",a:["pay-check.ru"],h:"Бери текст перед первой «/» и оставь две последние части.",e:"Настоящий домен pay-check.ru, а shop.by только приманка в начале адреса."},
+{q:"Банк по телефону просит назвать код из СМС. Можно ли? Ответь «да» или «нет».",a:["нет"],h:"Код из СМС это ключ к твоим деньгам.",e:"Код не называют никому, даже если говорят «из банка»."},
+{q:"В адресе paypa1.com одна буква подменена. Какой символ стоит вместо бувы «l»?",a:["1","цифра 1","единица"],h:"Посмотри на предпоследний знак перед .com.",e:"Цифра 1 похожа на «l». Такие подмены замечают единицы."},
+{q:"Какой из паролей слабее всего: 7Hj#k9, qwerty123 или Кот-Лампа-Сад-42? Напиши этот пароль.",a:["qwerty123"],h:"Вспомни словарь частых паролей во «Взломщике паролей».",e:"qwerty123 есть в словарях взломщиков и падает мгновенно."},
+{q:"Что надо включить, чтобы взлом не удался даже при утечке пароля? Напиши название защиты.",a:["двухэтапная","двухфакторная","2fa"],inc:true,h:"Дополнительный код после пароля. Из двух слов.",e:"Двухэтапная защита нужна и паролю, и коду: один пароль уже не ключ от аккаунта."},
+{vm:"link",q:"Виртуалка справа: мессенджер. Замени ссылку «от банка» на настоящий адрес belarusbank.by (с защитой https) и открой её. Сайт покажет флаг, введи его сюда.",a:["DELO14{link_fixed}"],h:"Нужен адрес вида https://belarusbank.by без лишних частей.",e:"Ты заменил подложный адрес на настоящий. Так и надо: не открывать ссылки из сообщений, а набирать адрес самому.",p:`<div class="bw"><div class="vmh">Виртуалка: мессенджер</div><div class="pg"><p>«Банк» пишет: «Подтвердите карту по ссылке ниже».</p><div class="ab"><input id="vu" type="text" value="http://belarusbank.by.pay-check.ru/login" aria-label="Адрес"><button class="sp" id="vgo" type="button">Открыть</button></div><p id="vo"></p></div></div>`},
+{vm:"pass",q:"Виртуалка справа: регистрация в игре. Придумай пароль, который примет сайт, и создай аккаунт. Флаг введи здесь.",a:["DELO14{strong_pass}"],h:"Возьми длинную фразу из нескольких слов с разделителями, без 123 и qwerty.",e:"Длинная фраза без частых кусков проходит все проверки. Это и есть защита аккаунта.",p:`<div class="bw"><div class="vmh">Виртуалка: регистрация в игре</div><div class="pg"><p>Сайт требует:</p><ul class="ck" id="vck"></ul><input id="vp" type="text" placeholder="Новый пароль" autocomplete="off" aria-label="Пароль"><div class="row"><button class="sp" id="vok" type="button">Создать аккаунт</button></div><p id="vo"></p></div></div>`}
+]},
+m:{n:"Средний: Поддельный магазин",f:"DELO14{fake_shop_caught}",T:[
+{p:`<div class="bw"><div class="ab"><span data-c="x">http://</span><span data-c="x">elektro-dom-vygoda.shop-sale.top</span><span data-c="x">/iphone-15</span></div><div class="pg"><h4>ЭлектроДом-Выгода</h4><p>Только сегодня! iPhone 15 Pro</p><p><s data-c="x">4999 руб.</s> <b data-c="price">99 руб.</b></p><div class="row"><button type="button" class="sp" data-c="pay1">Карта на сайте</button><button type="button" class="sp" data-c="pay2">Перевод на карту физлица</button></div><p>Отзывы:<br>Анна, 12.11: «Супер!»<br>Олег, 12.11: «Быстро!»<br>Ира, 12.11: «Рекомендую»<br>Петя, 12.11: «Лучший»<br>Лена, 03.09: «Пришло через месяц»</p></div></div>`,q:"Выясни настоящий домен магазина (две последние части адреса).",a:["shop-sale.top"],h:"Бери текст перед первой «/» и оставь две последние части.",e:"Настоящий домен shop-sale.top. Длинное имя магазина лишь поддомен для красоты."},
+{q:"Каким протоколом открыт сайт: http или https? Ответь одним словом.",a:["http"],h:"Посмотри на самое начало адреса.",e:"Без буквы «s» данные идут открыто, и платить на таком сайте нельзя."},
+{c:"price",q:"Нажми на цену-приманку, которая слишком хороша, чтобы быть правдой.",h:"Смотри на новую цену, не на зачёркнутую.",e:"Цена ниже реальной в десятки раз это классика обмана. Настоящие магазины так не торгуют."},
+{c:"pay2",q:"Нажми на самый подозрительный способ оплаты.",h:"Кому при этом уходят деньги: магазину или человеку?",e:"Перевод на карту физлица: деньги уходят человеку, а не магазину, и вернуть их почти невозможно."},
+{q:"Сколько отзывов оставлено в один и тот же день? Ответ цифрой.",a:["4","четыре"],h:"Сравни даты перед именами.",e:"Четыре похожих отзыва за один день это накрутка, а единственный честный отзыв про месяц доставки."},
+{vm:"priv",q:"Виртуалка справа: соцсеть. Защити данные Даши: настрой приватность и нажми «Сохранить». Флаг введи здесь.",a:["DELO14{privacy_locked}"],h:"Геометка выключена, профиль и личка только для друзей, телефон скрыт, двухэтапная защита включена.",e:"Закрытый профиль, скрытый телефон и двухэтапная защита закрывают самые частые пути для мошенников.",p:`<div class="bw"><div class="vmh">Виртуалка: настройки Даши</div><div class="pg"><p>Незнакомцы не должны видеть телефон и место, писать ей и открывать профиль.</p><label>Геометка в постах <select id="s1"><option value="on">включена</option><option value="off">выключена</option></select></label><label>Кто видит профиль <select id="s2"><option value="all">все</option><option value="fr">только друзья</option></select></label><label>Кто видит телефон <select id="s3"><option value="all">все</option><option value="fr">друзья</option><option value="no">никто</option></select></label><label>Кто пишет в личку <select id="s4"><option value="all">все</option><option value="fr">только друзья</option></select></label><label>Двухэтапная защита <select id="s5"><option value="off">выключена</option><option value="on">включена</option></select></label><div class="row"><button class="sp" id="vsv" type="button">Сохранить</button></div><p id="vo"></p></div></div>`},
+{vm:"mail",q:"Виртуалка справа: почта. Отметь письма-фишинг и отправь отчёт. Настоящие письма не трогай. Флаг введи здесь.",a:["DELO14{phish_reported}"],h:"Смотри на домен отправителя и на то, что просят сделать.",e:"Фишинг выдают чужой домен отправителя, срочность и просьба ввести данные или код.",p:`<div class="bw"><div class="vmh">Виртуалка: почта</div><div class="pg"><p>Нажми на письмо, чтобы отметить его как фишинг, повторное нажатие снимает отметку.</p><ul class="dl" id="vml"></ul><div class="row"><button class="sp" id="vrp" type="button">Отправить отчёт</button></div><p id="vo"></p></div></div>`}
+]},
+h:{n:"Тяжёлый: Школьный портал",f:"DELO14{idor_found_portal_saved}",T:[
+{c:"pass",p:`<div class="bw"><div class="ab"><span data-c="x">http://portal-school.test/login?user=ivan&amp;</span><span data-c="pass">pass=12345</span></div><div class="pg"><h4>Школьный портал</h4><p>Вход выполнен. Добро пожаловать, Иван!</p></div></div>`,q:"Портал после входа открылся так. Нажми на часть адреса, которая выдаёт пароль.",h:"Ищи в адресе после знака «?» параметр со словом pass.",e:"Пароль в адресе остаётся в истории браузера, и его видят все, кому передана ссылка."},
+{p:`<div class="bw"><div class="ab"><input id="idin" type="text" value="http://portal-school.test/profile?id=105" aria-label="Адрес"><button class="sp" id="gob" type="button">Перейти</button></div><div class="pg"><h4>Мой профиль</h4><p id="card">Профиль №105: Саша, 9А (это ты)</p></div></div>`,q:"Измени число id в адресе на 106 и нажми «Перейти». Как зовут ученицу?",a:["мария"],inc:true,h:"В поле адреса замени цифры после id=.",e:"Ты увидел чужие данные, хотя не должен был: портал не проверяет, чей это профиль."},
+{q:"Как называется эта уязвимость: чужой профиль открывается, если просто поменять число в адресе? Варианты: IDOR, SQL, XSS.",a:["idor"],inc:true,h:"Вариант со словом «доступ» в расшифровке: небезопасная прямая ссылка на объект.",e:"Это IDOR: сайт отдаёт объект по номеру, не проверяя права посетителя. Исправляется проверкой доступа на стороне сервера."},
+{c:"bk",p:`<div class="bw"><div class="ab"><span data-c="x">http://portal-school.test/files/</span></div><div class="pg"><h4>Index of /files/</h4><ul class="dl"><li><button type="button" class="sp" data-c="a">schedule.pdf</button></li><li><button type="button" class="sp" data-c="a">news.txt</button></li><li><button type="button" class="sp" data-c="bk">db_backup.sql</button></li><li><button type="button" class="sp" data-c="a">logo.png</button></li></ul></div></div>`,q:"Папка файлов портала открыта всем. Нажми на файл, который не должен быть публичным.",h:"Какой файл содержит данные всех учеников?",e:"Резервная копия базы содержит личные данные и пароли. Её нельзя держать в публичной директории."},
+{p:`<div class="bw"><div class="ab"><span>http://portal-school.test/</span></div><div class="pg"><h4>Школьный портал</h4><p>Новости школы и объявления.</p><button class="sp" id="srcb" type="button">Показать код страницы</button><pre id="srcv" hidden>&lt;!-- TODO: убрать до сдачи --&gt;<br>&lt;!-- admin / Summer2024 --&gt;<br>&lt;h1&gt;Школьный портал&lt;/h1&gt;</pre></div></div>`,q:"Нажми «Показать код страницы». Какой пароль администратора забыли в комментарии?",a:["summer2024"],h:"Пароль стоит после слова admin.",e:"Пароли в коде страницы видит любой, кто нажмёт «просмотр кода». Секреты в код не кладут."},
+{vm:"patch",q:"Виртуалка справа: админка портала. Закрой все четыре дыры и нажми «Применить». Когда все проверки пройдены, получишь флаг и введёшь его здесь.",a:["DELO14{portal_patched}"],h:"Выбирай в каждом списке тот вариант, где доступ ограничен.",e:"Ты исправил IDOR, пароль в адресе, открытую директорию и публичную резервную копию. Так дыры и закрывают.",p:`<div class="bw"><div class="vmh">Виртуалка: админка портала</div><div class="pg"><p>Настрой защиту и нажми «Применить»: система сама проверит каждую дыру.</p><label>Профиль по id в адресе <select id="p1"><option value="0">отдаётся любому</option><option value="1">только владельцу</option></select></label><label>Пароль при входе <select id="p2"><option value="0">в адресе страницы</option><option value="1">в теле запроса</option></select></label><label>Директория /files/ <select id="p3"><option value="0">открыта всем</option><option value="1">закрыта</option></select></label><label>Резервные копии <select id="p4"><option value="0">в /files/</option><option value="1">в закрытом хранилище</option></select></label><div class="row"><button class="sp" id="vap" type="button">Применить</button></div><ul class="ck" id="vtl"></ul><p id="vo"></p></div></div>`},
+{vm:"logs",q:"Виртуалка справа: журнал сервера. Найди адреса, которые перебирали чужие профили и скачали базу, заблокируй их и сдай отчёт. Флаг введи здесь.",a:["DELO14{attackers_blocked}"],h:"Ищи один адрес с запросами к разным id и один, который скачал db_backup.sql.",e:"Журнал показывает следы атаки: перебор id и скачивание копии. Блокировка адресов останавливает их, но дыры всё равно надо закрыть.",p:`<div class="bw"><div class="vmh">Виртуалка: журнал сервера</div><div class="pg"><p>Нажми «Блок» у адресов атакующих и сдай отчёт.</p><ul class="dl" id="vgl"></ul><div class="row"><button class="sp" id="vsb" type="button">Сдать отчёт</button></div><p id="vo"></p></div></div>`}
+]}
+};
+const VM={
+link(){
+  $("#vgo").onclick=()=>{
+    const v=$("#vu").value.trim(),o=$("#vo");let u;
+    try{u=new URL(/^https?:\/\//i.test(v)?v:"https://"+v)}catch(e){o.textContent="Это не адрес.";return}
+    if(u.hostname.replace(/^www\./,"")!=="belarusbank.by"){o.textContent="Это не сайт банка, загрузка остановлена: "+u.hostname;return}
+    if(u.protocol!=="https:"){o.textContent="Сайт банка, но без защиты. Нужен https.";return}
+    o.textContent="Открыт настоящий сайт банка. Флаг: DELO14{link_fixed}";
+  };
+},
+pass(){
+  const C=[["не короче 12 знаков",p=>p.length>=12],["без частых кусков: 123, qwerty, pass, admin",p=>!/123|qwerty|pass|admin|парол/i.test(p)],["не только цифры",p=>/\D/.test(p)]];
+  const up=()=>{const p=$("#vp").value;$("#vck").innerHTML=C.map(c=>`<li class="${c[1](p)?"ok":""}">${c[1](p)?"готово":"нужно"}: ${c[0]}</li>`).join("")};
+  $("#vp").oninput=up;up();
+  $("#vok").onclick=()=>{const p=$("#vp").value;$("#vo").textContent=C.every(c=>c[1](p))?"Аккаунт создан, пароль выдержал. Флаг: DELO14{strong_pass}":"Пароль слабый, аккаунт не создан."};
+},
+priv(){
+  $("#vsv").onclick=()=>{
+    let bad=[["s1","off"],["s2","fr"],["s4","fr"],["s5","on"]].filter(x=>$("#"+x[0]).value!==x[1]).length;
+    if(!["fr","no"].includes($("#s3").value))bad++;
+    $("#vo").textContent=bad?"Небезопасных настроек: "+bad:"Профиль защищён. Флаг: DELO14{privacy_locked}";
+  };
+},
+mail(){
+  const M=[["info@belpost.by","Посылка прибыла в отделение","Заберите её с паспортом",0],["support@belpost-track.top","Оплатите 1,50 руб. по ссылке","Иначе посылку вернут",1],["mama@mail.by","Купи хлеб по дороге","Целую",0],["security@bank-help.ru","Срочно подтвердите карту","Введите данные и код из СМС",1]],st=[0,0,0,0],L=$("#vml");
+  const dr=()=>{L.innerHTML="";M.forEach((m,i)=>{const li=document.createElement("li"),b=document.createElement("button");b.type="button";b.className="sp"+(st[i]?" on":"");b.textContent=(st[i]?"[ФИШИНГ] ":"")+m[0]+": "+m[1]+". "+m[2];b.onclick=()=>{st[i]^=1;dr()};li.append(b);L.append(li)})};
+  dr();
+  $("#vrp").onclick=()=>{const bad=M.filter((m,i)=>m[3]!==st[i]).length;$("#vo").textContent=bad?"Ошибок в отчёте: "+bad:"Отчёт принят. Флаг: DELO14{phish_reported}"};
+},
+patch(){
+  $("#vap").onclick=()=>{
+    const T=["Чужие профили закрыты","Пароль не в адресе","Директория /files/ закрыта","Копии вне публичной директории"];
+    const r=["p1","p2","p3","p4"].map(x=>$("#"+x).value==="1");
+    $("#vtl").innerHTML=T.map((t,i)=>`<li class="${r[i]?"ok":""}">${r[i]?"пройден":"не пройден"}: ${t}</li>`).join("");
+    $("#vo").textContent=r.every(Boolean)?"Все проверки пройдены. Флаг: DELO14{portal_patched}":"";
+  };
+},
+logs(){
+  const R=[["192.0.2.10","GET /news"],["198.51.100.23","GET /profile?id=106"],["192.0.2.44","GET /profile?id=105"],["198.51.100.23","GET /profile?id=107"],["192.0.2.15","GET /files/schedule.pdf"],["203.0.113.77","GET /files/db_backup.sql"],["192.0.2.10","GET /profile?id=105"],["198.51.100.23","GET /profile?id=108"]],B=new Set(),L=$("#vgl");
+  const dr=()=>{L.innerHTML="";R.forEach(r=>{const li=document.createElement("li"),s=document.createElement("span"),b=document.createElement("button");s.textContent=r[0]+" "+r[1]+" 200"+(B.has(r[0])?" [БЛОК]":"");b.type="button";b.className="sp";b.textContent=B.has(r[0])?"Снять":"Блок";b.onclick=()=>{if(B.has(r[0]))B.delete(r[0]);else B.add(r[0]);dr()};li.append(s,b);L.append(li)})};
+  dr();
+  $("#vsb").onclick=()=>{const w=["198.51.100.23","203.0.113.77"];$("#vo").textContent=B.size===2&&w.every(x=>B.has(x))?"Отчёт принят. Флаг: DELO14{attackers_blocked}":"Неверно: заблокированы не те адреса или не все."};
+}
+};
+let lbk="",lbi=0;
+function lbTiles(){["e","m","h"].forEach(k=>{$("#ls"+k).textContent=S.got["labf"+k]?"Пройдено":"Не пройдено"})}
+function lbShow(){
+  const t=LB[lbk].T[lbi],pp=$("#rmp");
+  if(t.p!==undefined)pp.innerHTML=t.p;
+  $("#room").classList.toggle("vmode",!!t.vm);
+  if(t.vm)VM[t.vm]();
+  pp.hidden=!pp.innerHTML;
+  $("#rmq").textContent="Задание "+(lbi+1)+" из "+LB[lbk].T.length+". "+t.q;
+  $("#rmb").style.width=(lbi*100/LB[lbk].T.length)+"%";
+  $("#rmf").textContent="";$("#rmh").textContent="";
+  $("#rma").hidden=!!t.c;$("#rmi").value="";$("#rmhb").hidden=false;
+}
+function lbOpen(k){lbk=k;lbi=0;$("#lv").hidden=true;$("#room").hidden=false;$("#rmt").textContent=LB[k].n;$("#rmp").innerHTML="";lbShow();$("#room").scrollIntoView()}
+function lbBack(){$("#room").hidden=true;$("#lv").hidden=false;lbTiles();$("#lv").scrollIntoView()}
+function lbDone(){
+  award("labf"+lbk,30);lbTiles();
+  $("#rmb").style.width="100%";$("#room").classList.remove("vmode");$("#rmp").hidden=true;$("#rma").hidden=true;$("#rmhb").hidden=true;$("#rmh").textContent="";
+  $("#rmq").textContent="Комната пройдена. Все задания решены.";
+  const f=$("#rmf");f.textContent="";
+  const s=document.createElement("span");s.className="stamp ok";s.textContent="Комната закрыта";
+  const pre=document.createElement("pre");pre.className="tm";pre.textContent="> флаг комнаты: "+LB[lbk].f;
+  const b=document.createElement("button");b.type="button";b.className="btn";b.textContent="К выбору уровня";b.onclick=lbBack;
+  f.append(s,pre,b);
+}
+function lbRes(ok){
+  const t=LB[lbk].T[lbi],f=$("#rmf");
+  if(!ok){f.textContent="Не то. Попробуй ещё или возьми подсказку.";return}
+  f.textContent="";
+  const s=document.createElement("span");s.className="stamp ok";s.textContent="Верно";
+  const p=document.createElement("p");p.textContent=t.e;
+  const b=document.createElement("button");b.type="button";b.className="btn";b.textContent=lbi<LB[lbk].T.length-1?"Следующее задание":"Завершить комнату";
+  b.onclick=()=>{lbi++;if(lbi>=LB[lbk].T.length)lbDone();else lbShow()};
+  f.append(s,p,b);b.focus();
+  $("#rma").hidden=true;$("#rmhb").hidden=true;
+  award("lab"+lbk+lbi,10);
+}
+function lbSub(){const n=nz($("#rmi").value);if(!n)return;const t=LB[lbk].T[lbi];lbRes(t.a.some(x=>n===nz(x)||(t.inc&&n.includes(nz(x)))))}
+$("#rms").onclick=lbSub;
+$("#rmi").onkeydown=e=>{if(e.key==="Enter")lbSub()};
+$("#rmhb").onclick=()=>{$("#rmh").textContent="Подсказка: "+LB[lbk].T[lbi].h};
+$("#rmback").onclick=lbBack;
+$("#rmp").onclick=e=>{
+  const g=e.target;
+  if(g.id==="gob"){const m=$("#idin").value.match(/id=(\d+)/);$("#card").textContent=m&&PR[m[1]]?"Профиль №"+m[1]+": "+PR[m[1]]:"Профиль не найден";return}
+  if(g.id==="srcb"){$("#srcv").hidden=!$("#srcv").hidden;return}
+  const c=g.closest("[data-c]"),t=LB[lbk].T[lbi];
+  if(c&&t.c&&!$("#rmf").querySelector(".stamp"))lbRes(c.dataset.c===t.c);
+};
+document.querySelectorAll(".lt").forEach(b=>b.onclick=()=>lbOpen(b.dataset.l));
+lbTiles();
+// помощник
+const asp=$("#asp"),asl=$("#asl");
+function tpa(o){asp.hidden=!o;$("#asb").setAttribute("aria-expanded",o);if(o)$("#asin").focus()}
+$("#asb").onclick=()=>tpa(asp.hidden);
+$("#asx").onclick=()=>{tpa(false);$("#asb").focus()};
+function say(t,c){const d=document.createElement("div");d.className="msg "+c;d.textContent=t;asl.appendChild(d);asl.scrollTop=asl.scrollHeight}
+const HELP={"Как отличить фишинг?":"Смотри на домен перед первой «/»: именно он настоящий. Потренируйся в разделе «Ссылка или подделка».","Что делать, если взломали?":"Скажи взрослому, смени пароль в почте и выйди со всех устройств. Подробный порядок в разделе «Меня взломали».","Придумать пароль":"Бери длинную фразу из нескольких слов, а проверить её можно во «Взломщике паролей»."};
+let SM=null;
+(async()=>{
+  try{if(typeof claude!=="undefined")SM=await claude.use("sample")}catch(e){SM=null}
+  if(SM)$("#asn").textContent="Ответы даёт ИИ, и он может ошибаться. О серьёзных ситуациях расскажи взрослому.";
+})();
+const INSTR="Ты помощник на сайте «Дело №14: Сеть» для школьников, родителей и учителей из Беларуси. Отвечай по-русски, коротко (до 5 предложений), дружелюбно и простыми словами, без разметки markdown. Тема: безопасность в интернете, пароли, фишинг, мошенничество, кибербуллинг, права и обязанности в сети. Не давай инструкций по взлому, слежке за людьми, обходу защиты и созданию вредоносных программ. Не проси личные данные (пароли, коды, адрес, фото). Если ребёнка шантажируют, ему угрожают или зовут встретиться, посоветуй сразу рассказать взрослому и сохранить переписку. Если вопрос не по теме, мягко верни разговор к теме. О законах говори общо, советуй проверять на pravo.by, точные суммы штрафов не называй.";
+const hist=[];let abusy=false;
+function ask(q){
+  if(!q)return;say(q,"me");
+  if(Object.prototype.hasOwnProperty.call(HELP,q)){setTimeout(()=>say(HELP[q],"bot"),350);return}
+  if(!SM){setTimeout(()=>say("Живой помощник сейчас недоступен. Загляни в разделы сайта или нажми один из быстрых вопросов.","bot"),350);return}
+  if(abusy)return;abusy=true;
+  const d=document.createElement("div"),L=$("#asl");d.className="msg bot";d.textContent="печатает...";L.appendChild(d);L.scrollTop=L.scrollHeight;
+  const m=hist.slice(-6).concat([{role:"user",content:q}]).map(x=>({role:x.role,content:x.content}));
+  m[0].content=(LANG==="be"?INSTR.replace("Отвечай по-русски","Адказвай па-беларуску"):INSTR)+"\n\n"+m[0].content;
+  SM(m,{cache:false,modelTier:"quick",onText:o=>{d.textContent=o.text;L.scrollTop=L.scrollHeight}})
+  .then(r=>{d.textContent=r.text;hist.push({role:"user",content:q},{role:"assistant",content:r.text})})
+  .catch(e=>{d.textContent=e&&e.code==="rate_limited"?"Слишком много вопросов подряд. Подожди минуту.":"Не получилось ответить. Попробуй позже или загляни в разделы сайта.";if(e&&e.code==="not_granted")SM=null})
+  .finally(()=>{abusy=false;L.scrollTop=L.scrollHeight});
+}
+$("#asq").onclick=e=>{const b=e.target.closest("button");if(b)ask(b.dataset.q||b.textContent)};
+$("#ass").onclick=()=>{const i=$("#asin"),v=i.value.trim();i.value="";ask(v)};
+$("#asin").onkeydown=e=>{if(e.key==="Enter")$("#ass").click()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")tpa(false)});
+$("#lg").onclick=e=>{e.preventDefault();scrollTo(0,0)};
+addEventListener("scroll",()=>{
+  let cur="";
+  document.querySelectorAll("main section:not([hidden])").forEach(s=>{if(s.getBoundingClientRect().top<120)cur=s.id});
+  document.querySelectorAll("#nv a[data-t]").forEach(a=>{if(a.dataset.t===cur)a.setAttribute("aria-current","true");else a.removeAttribute("aria-current")});
+},{passive:true});
+const RK2={"Новичок":"Пачатковец","Стажёр":"Стажор","Оперативник":"Аператыўнік","Следователь":"Следчы","Эксперт":"Эксперт"};
+const BE={
+"Гость":"Госць","Ник":"Нік","баллов,":"балаў,","Загрузить своё фото":"Загрузіць сваё фота",
+"Баллы: +10 за верный ответ, +20 за пройденный тест, +5 за голос и за кодовое слово, +10 за сильный пароль и за каждую найденную улику в кадре, +10 за задание лаборатории и +30 за пройденную комнату, +20 за пойманного мошенника в переписке, +5 за верно разобранное сообщение в инбоксе. Профиль хранится только в этом браузере.":"Балы: +10 за правільны адказ, +20 за пройдзены тэст, +5 за голас і за кодавае слова, +10 за моцны пароль і за кожны знойдзены доказ у кадры, +10 за заданне лабараторыі і +30 за пройдзены пакой, +20 за злоўленага махляра ў перапісцы, +5 за правільна разабранае паведамленне ў інбоксе. Профіль захоўваецца толькі ў гэтым браўзеры.",
+"Заработать первые баллы":"Заробіць першыя балы","Все 7 раундов «Ссылка или подделка» верно":"Усе 7 раундаў «Спасылка ці падробка» правільна","Все 7 дел в «Расследовании» верно":"Усе 7 спраў у «Расследаванні» правільна","Все 7 случаев в «Суде» верно":"Усе 7 выпадкаў у «Судзе» правільна","Найти все 6 улик в кадре":"Знайсці ўсе 6 доказаў у кадры","8 верных ответов в «Инбоксе»":"8 правільных адказаў у «Інбоксе»","Поймать мошенника во всех трёх переписках":"Злавіць махляра ва ўсіх трох перапісках","Придумать сильный пароль во «Взломщике»":"Прыдумаць моцны пароль у «Узломшчыку»","Озвучить текст и получить кодовое слово":"Агучыць тэкст і атрымаць кодавае слова","Все 10 действий в «Можно или нельзя» верно":"Усе 10 дзеянняў у «Можна ці нельга» правільна","Пройти все три комнаты лаборатории":"Прайсці ўсе тры пакоі лабараторыі","Пройти тяжёлую комнату лаборатории":"Прайсці цяжкі пакой лабараторыі",
+"Первый шаг":"Першы крок","Охотник за доменами":"Паляўнічы за дамэнамі","Раскрыл все дела":"Раскрыў усе справы","Юрист-новичок":"Юрыст-пачатковец","Ловец улик":"Лаўец доказаў","Быстрые пальцы":"Хуткія пальцы","Не попался":"Не трапіўся","Крепкий пароль":"Моцны пароль","Свой в семье":"Свой у сям’і","Знает правила":"Ведае правілы","Лаборант":"Лабарант","Закрыл дыры":"Закрыў дзіркі",
+"Новичок":"Пачатковец","Стажёр":"Стажор","Оперативник":"Аператыўнік","Следователь":"Следчы","Эксперт":"Эксперт","Высшее звание получено":"Вышэйшае званне атрымана",
+"Сбросить профиль":"Скінуць профіль","Дело":"Справа","Выбери роль ниже":"Абяры ролю ніжэй",
+"Расследование":"Расследаванне","Переписка с мошенником":"Перапіска з махлярам","Можно или нельзя":"Можна ці нельга","Ссылка или подделка":"Спасылка ці падробка","Инбокс 60 секунд":"Інбокс 60 секунд","Улика в кадре":"Доказ у кадры","Суд":"Суд","Взломщик паролей":"Узломшчык пароляў","Голос":"Голас","Лаборатория":"Лабараторыя","Меня взломали":"Мяне ўзламалі","Паспорт цифровой безопасности":"Пашпарт лічбавай бяспекі","О проекте":"Пра праект","Сменить роль":"Змяніць ролю","Классный час":"Класная гадзіна","Родителям":"Бацькам",
+"Конкурс «Интернет — территория безопасности»":"Конкурс «Інтэрнэт — тэрыторыя бяспекі»","Дело №14:":"Справа №14:","Сеть":"Сетка",
+"Пока ты читал заголовок, этот сайт уже кое-что узнал о тебе. Мы ничего не отправляем: всё считается в твоём браузере и исчезнет вместе со страницей. Теперь представь, что видят о тебе те, кто специально ищет.":"Пакуль ты чытаў загаловак, гэты сайт ужо нешта ўзнаў пра цябе. Мы нічога не адпраўляем: усё лічыцца ў тваім браўзеры і знікне разам са старонкай. Цяпер уяві, што бачаць пра цябе тыя, хто спецыяльна шукае.",
+"Система":"Сістэма","Браузер":"Браўзер","Язык":"Мова","Часовой пояс":"Гадзінны пояс","Экран":"Экран","Сейчас у тебя":"Цяпер у цябе","Интернет":"Інтэрнэт","подключён":"падключаны",
+"Кто ты? Выбери свою дорожку":"Хто ты? Абяры сваю дарожку","Школьник":"Школьнік","Поймай мошенника в семи делах, отличи подделку от настоящего сайта и получи паспорт.":"Злаві махляра ў сямі справах, адрозні падробку ад сапраўднага сайта і атрымай пашпарт.","Родитель":"Бацькі","Ситуации, в которых легко растеряться, права семьи и кодовое слово против подделки голоса.":"Сітуацыі, у якіх лёгка разгубіцца, правы сям’і і кодавае слова супраць падробкі голасу.","Учитель":"Настаўнік","Готовый классный час на 15 минут и все материалы для показа на экране.":"Гатовая класная гадзіна на 15 хвілін і ўсе матэрыялы для паказу на экране.",
+"Классный час: 15 минут":"Класная гадзіна: 15 хвілін","Открой сайт на экране, раздели класс на команды и голосуйте за варианты. Сначала обсуждение, потом правильный ответ.":"Адкрый сайт на экране, падзялі клас на каманды і галасуйце за варыянты. Спачатку абмеркаванне, потым правільны адказ.",
+"0–2 мин":"0–2 хв","Досье. Покажи блок «что сайт знает о тебе» вверху страницы. Вопрос классу: что из этого вы не ожидали увидеть?":"Дасье. Пакажы блок «што сайт ведае пра цябе» ўверсе старонкі. Пытанне класу: што з гэтага вы не чакалі ўбачыць?",
+"2–7 мин":"2–7 хв","Дело 4 «Звонок от мамы» из раздела «Расследование»: класс голосует за вариант, потом открой ответ.":"Справа 4 «Званок ад мамы» з раздзела «Расследаванне»: клас галасуе за варыянт, потым адкрый адказ.",
+"7–10 мин":"7–10 хв","Один раунд из «Ссылка или подделка»: кто заметил подмену раньше ответа?":"Адзін раунд з «Спасылка ці падробка»: хто заўважыў падмену раней за адказ?",
+"10–13 мин":"10–13 хв","«Суд», случай 1 про оскорбления в сети: права и обязанности в цифровой среде.":"«Суд», выпадак 1 пра абразы ў сетцы: правы і абавязкі ў лічбавым асяроддзі.",
+"13–15 мин":"13–15 хв","Кодовое слово семьи как домашнее задание и раздел «Меня взломали» на память.":"Кодавае слова сям’і як хатняе заданне і раздзел «Мяне ўзламалі» на памяць.",
+"Скопировать ссылку для школьников":"Скапіраваць спасылку для школьнікаў","Когда ребёнку нужна помощь":"Калі дзіцяці патрэбна дапамога",
+"Это поводы поговорить, а не диагнозы: ребёнок резко закрывается после телефона, прячет экран, удаляет переписки, тревожится от уведомлений, появились необъяснимые траты. Говорите спокойно и без обвинений, чтобы он не боялся признаться.":"Гэта нагоды пагаварыць, а не дыягназы: дзіця рэзка замыкаецца пасля тэлефона, хавае экран, выдаляе перапіскі, трывожыцца ад апавяшчэнняў, з’явіліся незразумелыя выдаткі. Гаварыце спакойна і без абвінавачванняў, каб ён не баяўся прызнацца.",
+"Родителям: 7 ситуаций":"Бацькам: 7 сітуацый","Ситуации, в которых родителю легко растеряться. Выберите, как поступить, и сравните с ответом. Потом пройдите ниже те же дела, что и ребёнок, и сравните результаты.":"Сітуацыі, у якіх бацьку лёгка разгубіцца. Абярыце, як дзейнічаць, і параўнайце з адказам. Потым прайдзіце ніжэй тыя ж справы, што і дзіця, і параўнайце вынікі.",
+"Расследование: 7 дел":"Расследаванне: 7 спраў","В каждом деле тебя пытается обмануть мошенник. Выбери, как поступить. Подходит и школьникам, и родителям: родителям полезно пройти то же самое и сравнить ответы.":"У кожнай справе цябе спрабуе ашукаць махляр. Абяры, як дзейнічаць. Падыходзіць і школьнікам, і бацькам: бацькам карысна прайсці тое ж самае і параўнаць адказы.",
+"Мошенник уже пишет тебе. Выбирай ответы: одни приведут к потере денег или аккаунта, другие заставят его отступить. Три разные истории, и в каждой несколько концовок.":"Махляр ужо піша табе. Выбірай адказы: адны прывядуць да страты грошай або акаўнта, іншыя прымусяць яго адступіць. Тры розныя гісторыі, і ў кожнай некалькі канцовак.",
+"Друг в беде":"Сябар у бядзе","Бесплатный скин":"Бясплатны скін","Звонок из банка":"Званок з банка","Мессенджер":"Мэсенджар","Выбери историю выше, и переписка начнётся.":"Абяры гісторыю вышэй, і перапіска пачнецца.","печатает...":"друкуе...",
+"Перетащи действие в нужную сторону: влево, если нельзя, вправо, если можно. На телефоне можно просто нажать на нужную сторону, а с клавиатуры работают стрелки. Всего 10 действий.":"Перацягні дзеянне ў патрэбны бок: улева, калі нельга, управа, калі можна. На тэлефоне можна проста націснуць на патрэбны бок, а з клавіятуры працуюць стрэлкі. Усяго 10 дзеянняў.","Нельзя":"Нельга","Можно":"Можна",
+"В каждом раунде три адреса, и один из них ловушка. Совет на всю жизнь: сайт банка или магазина открывай из закладки, а не из сообщения.":"У кожным раундзе тры адрасы, і адзін з іх пастка. Парада на ўсё жыццё: сайт банка або крамы адкрывай з закладкі, а не з паведамлення.",
+"За минуту разбери как можно больше сообщений: «Нормально», «Ловушка» или «Звони родителям». Третий вариант для случаев, когда нужен взрослый: зовут встретиться, шантажируют, предлагают сомнительный заработок. Клавиши 1, 2 и 3 тоже работают.":"За хвіліну разбяры як мага больш паведамленняў: «Нармальна», «Пастка» або «Тэлефануй бацькам». Трэці варыянт для выпадкаў, калі патрэбны дарослы: клічуць сустрэцца, шантажуюць, прапаноўваюць сумніўны заробак. Клавішы 1, 2 і 3 таксама працуюць.",
+"Нажми «Начать», когда будешь готов.":"Націсні «Пачаць», калі будзеш гатовы.","1. Нормально":"1. Нармальна","2. Ловушка":"2. Пастка","3. Звони родителям":"3. Тэлефануй бацькам","Начать":"Пачаць","Ещё раз":"Яшчэ раз",
+"Это пост вымышленной школьницы: для неё просто фото с подписью. Найди в кадре 6 деталей, по которым чужой человек узнает, кто она, где учится и когда дома никого нет. Нажимай на всё, что считаешь утечкой.":"Гэта пост выдуманай школьніцы: для яе проста фота з подпісам. Знайдзі ў кадры 6 дэталяў, па якіх чужы чалавек даведаецца, хто яна, дзе вучыцца і калі дома нікога няма. Націскай на ўсё, што лічыш уцечкай.",
+"Гомель, ул. Липовая, 12":"Гомель, вул. Ліпавая, 12","Средняя школа №127":"Сярэдняя школа №127","Уроки до 14:30. Танцы: вт и чт в 17:00":"Урокі да 14:30. Танцы: аў і чц у 17:00","«Одна дома до пятницы, родители в командировке!»":"«Адна дома да пятніцы, бацькі ў камандзіроўцы!»","Заретушировать всё":"Зрэтушаваць усё","Вернуть как было":"Вярнуць як было","Досье собрано":"Дасье сабрана",
+"Из одного снимка постороннему хватило бы пары минут, чтобы узнать, где живёт девочка, где учится, во сколько выходит и что дома никого нет. Нажми «Заретушировать всё» и сравни. Правила: выключай геометку, не снимай вывески, бейджи и ключи, не пиши, когда ты один дома, и закрой профиль. Персонаж и адрес вымышлены.":"З аднаго здымка староннім хапіла б пары хвілін, каб даведацца, дзе жыве дзяўчынка, дзе вучыцца, у колькі выходзіць і што дома нікога няма. Націсні «Зрэтушаваць усё» і параўнай. Правілы: выключай геаметку, не здымай шыльды, бэйджы і ключы, не пішы, калі ты адзін дома, і зачыні профіль. Персанаж і адрас выдуманы.",
+"Семь ситуаций из жизни. Реши, чья это ответственность, и посмотри, что об этом говорит закон Беларуси.":"Сем сітуацый з жыцця. Вырашы, чыя гэта адказнасць, і паглядзі, што пра гэта кажа закон Беларусі.",
+"Материал образовательный и не заменяет консультацию юриста. Нормы и штрафы меняются, актуальные тексты ищи на pravo.by.":"Матэрыял адукацыйны і не замяняе кансультацыю юрыста. Нормы і штрафы змяняюцца, актуальныя тэксты шукай на pravo.by.",
+"Введи пароль и смотри, как его ломает программа. Всё считается в твоём браузере и никуда не отправляется. Свой настоящий пароль не вводи: попробуй похожий по длине и составу.":"Увядзі пароль і глядзі, як яго ўзломвае праграма. Усё лічыцца ў тваім браўзеры і нікуды не адпраўляецца. Свой сапраўдны пароль не ўводзь: паспрабуй падобны па даўжыні і складзе.",
+"Пароль для проверки":"Пароль для праверкі","> жду пароль...":"> чакаю пароль...","Голос: как это делают мошенники":"Голас: як гэта робяць махляры",
+"Нажми кнопку: браузер прочитает текст вслух. Это простой синтезатор, а нейросети умеют копировать настоящий голос по короткой записи, например из голосового сообщения или сторис. Поэтому «мам, это я, срочно нужны деньги» сегодня нельзя проверять на слух.":"Націсні кнопку: браўзер прачытае тэкст услых. Гэта просты сінтэзатар, а нейрасеткі ўмеюць капіраваць сапраўдны голас па кароткім запісе, напрыклад з галасавога паведамлення або сторыс. Таму «мам, гэта я, тэрмінова патрэбны грошы» сёння нельга правяраць на слых.",
+"Текст, который прозвучит":"Тэкст, які прагучыць","Мам, это я. Я попал в беду, срочно переведи деньги на этот номер. Только папе не говори.":"Мам, гэта я. Я трапіў у бяду, тэрмінова пераведзі грошы на гэты нумар. Толькі бацьку не кажы.","Озвучить":"Агучыць","Защита: кодовое слово семьи":"Абарона: кодавае слова сям’і",
+"Договоритесь о слове, которое знают только свои. Позвонили «родственник» и просит денег: спроси слово. Не знает — это обман. Ниже случайная идея, а лучше придумайте своё и не пишите его в чатах.":"Дамовіцеся пра слова, якое ведаюць толькі свае. Патэлефанаваў «сваяк» і просіць грошы: спытай слова. Не ведае — гэта падман. Ніжэй выпадковая ідэя, а лепш прыдумайце сваё і не пішыце яго ў чатах.","Другое слово":"Іншае слова",
+"Три комнаты, в каждой по 7 заданий по порядку. В заданиях 6 и 7 справа открывается виртуалка с сайтом: делай там задачу, забирай флаг и вводи его слева. В средней и тяжёлой тебе дают прототип сайта, в котором нужно найти ошибку или опасность. Всё вымышлено, данные ненастоящие. За каждую комнату даётся флаг, как на настоящих соревнованиях.":"Тры пакоі, у кожным па 7 заданняў па парадку. У заданнях 6 і 7 справа адкрываецца віртуалка з сайтам: рабі там задачу, забірай сцяг і ўводзь яго злева. У сярэднім і цяжкім табе даюць прататып сайта, у якім трэба знайсці памылку або небяспеку. Усё выдумана, даныя несапраўдныя. За кожны пакой даецца сцяг, як на сапраўдных спаборніцтвах.",
+"Лёгкий":"Лёгкі","Основы: домены, коды и пароли. Без сайтов, только голова.":"Асновы: дамены, коды і паролі. Без сайтаў, толькі галава.","Не пройдено":"Не пройдзена","Пройдено":"Пройдзена","Средний":"Сярэдні","Поддельный магазин: разобрать сайт по кускам.":"Падробная крама: разабраць сайт па частках.","Тяжёлый":"Цяжкі","Школьный портал с дырами: найди уязвимости.":"Школьны партал з дзіркамі: знайдзі ўразлівасці.","К выбору уровня":"Да выбару ўзроўню","Отправить":"Адправіць","Подсказка":"Падказка",
+"Без паники. Первые десять минут решают всё.":"Без панікі. Першыя дзесяць хвілін вырашаюць усё.","Скажи взрослому, которому доверяешь. Бояться ругани не нужно: виноват тот, кто взломал.":"Скажы даросламу, якому давяраеш. Баяцца лаянкі не трэба: вінаваты той, хто ўзламаў.","Смени пароль в почте, а потом в остальных сервисах. Начинай с почты: через неё сбрасывают все остальные пароли.":"Змяні пароль у пошце, а потым у астатніх сэрвісах. Пачынай з пошты: праз яе скідаюць усе астатнія паролі.","Выйди из аккаунта на всех устройствах и включи двухэтапную защиту.":"Выйдзі з акаўнта на ўсіх прыладах і ўключы двухэтапную абарону.","Если списали деньги, сразу позвони в банк и заблокируй карту.":"Калі спісалі грошы, адразу патэлефануй у банк і заблакуй карту.","Сохрани скриншоты переписки и ссылки, а потом сообщи в поддержку сервиса. При серьёзном ущербе родители могут обратиться в милицию.":"Захавай скрыншоты перапіскі і спасылкі, а потым паведамі ў падтрымку сэрвісу. Пры сур’ёзнай шкодзе бацькі могуць звярнуцца ў міліцыю.",
+"Пройди дела, ссылки и суд, впиши имя и распечатай паспорт или сохрани его как PDF.":"Прайдзі справы, спасылкі і суд, упішы імя і раздрукуй пашпарт або захавай яго як PDF.","Имя":"Імя","Дело №14: Сеть":"Справа №14: Сетка","прошёл(а) проверку на цифровую безопасность":"прайшоў(-ла) праверку на лічбавую бяспеку","Печать или PDF":"Друк або PDF",
+"«Дело №14: Сеть» создан для конкурса «Интернет — территория безопасности».":"«Справа №14: Сетка» створана для конкурсу «Інтэрнэт — тэрыторыя бяспекі».","Как это связано с критериями номинации":"Як гэта звязана з крытэрыямі намінацыі","Ответственное поведение: расследование, инбокс, переписка с мошенником, лаборатория.":"Адказныя паводзіны: расследаванне, інбокс, перапіска з махлярам, лабараторыя.","Права и обязанности: разделы «Суд» и «Можно или нельзя».":"Правы і абавязкі: раздзелы «Суд» і «Можна ці нельга».","Правовая культура детей и родителей: отдельная дорожка для родителей, кодовое слово семьи.":"Прававая культура дзяцей і бацькоў: асобная дарожка для бацькоў, кодавае слова сям’і.","Профилактика: дорожка учителя с готовым классным часом на 15 минут.":"Прафілактыка: дарожка настаўніка з гатовай класнай гадзінай на 15 хвілін.","Источники и оговорка":"Крыніцы і агаворка",
+"Нормы взяты из открытых материалов: Уголовный кодекс (глава 31 и ст. 212), КоАП (ст. 9.3), закон о защите персональных данных № 99-З, портал pravo.by. Материал образовательный и не заменяет консультацию юриста: актуальные редакции проверяй на pravo.by.":"Нормы ўзяты з адкрытых матэрыялаў: Крымінальны кодэкс (глава 31 і арт. 212), КаАП (арт. 9.3), закон аб абароне персанальных даных № 99-З, партал pravo.by. Матэрыял адукацыйны і не замяняе кансультацыю юрыста: актуальныя рэдакцыі правярай на pravo.by.","Данные":"Даныя","Сайт ничего не отправляет на сервер. Профиль, баллы и штампы хранятся только в твоём браузере.":"Сайт нічога не адпраўляе на сервер. Профіль, балы і штампы захоўваюцца толькі ў тваім браўзеры.",
+"Дежурный помощник":"Дзяжурны памочнік","Дело №14: на связи":"Справа №14: на сувязі","Закрыть":"Закрыць","Здравствуй. Я дежурный по делу. Спроси про ссылки, пароли, мошенников или закон, подскажу, с чего начать.":"Вітаю. Я дзяжурны па справе. Спытай пра спасылкі, паролі, махляроў або закон, падкажу, з чаго пачаць.","Как отличить фишинг?":"Як адрозніць фішынг?","Что делать, если взломали?":"Што рабіць, калі ўзламалі?","Придумать пароль":"Прыдумаць пароль","Сейчас отвечают только быстрые подсказки.":"Зараз адказваюць толькі хуткія падказкі.","Помощник":"Памочнік","Создатель сайта:":"Стваральнік сайта:","Руководитель:":"Кіраўнік:","Все вычисления и ответы остаются в твоём браузере.":"Усе вылічэнні і адказы застаюцца ў тваім браўзеры.",
+"Смотри на домен перед первой «/»: именно он настоящий. Потренируйся в разделе «Ссылка или подделка».":"Глядзі на дамен перад першай «/»: менавіта ён сапраўдны. Патрэніруйся ў раздзеле «Спасылка ці падробка».","Скажи взрослому, смени пароль в почте и выйди со всех устройств. Подробный порядок в разделе «Меня взломали».":"Скажы даросламу, змяні пароль у пошце і выйдзі з усіх прылад. Падрабязны парадак у раздзеле «Мяне ўзламалі».","Бери длинную фразу из нескольких слов, а проверить её можно во «Взломщике паролей».":"Бяры доўгую фразу з некалькіх слоў, а праверыць яе можна ва «Узломшчыку пароляў».","Живой помощник сейчас недоступен. Загляни в разделы сайта или нажми один из быстрых вопросов.":"Жывы памочнік зараз недаступны. Зазірні ў раздзелы сайта або націсні адно з хуткіх пытанняў.","Слишком много вопросов подряд. Подожди минуту.":"Занадта шмат пытанняў запар. Пачакай хвіліну.","Не получилось ответить. Попробуй позже или загляни в разделы сайта.":"Не атрымалася адказаць. Паспрабуй пазней або зазірні ў раздзелы сайта.","Ответы даёт ИИ, и он может ошибаться. О серьёзных ситуациях расскажи взрослому.":"Адказы дае ІІ, і ён можа памыляцца. Пра сур’ёзныя сітуацыі раскажы даросламу.",
+"Профиль участника":"Профіль удзельніка","Придумай ник":"Прыдумай нік","Разделы":"Раздзелы","Что сайт знает о посетителе":"Што сайт ведае пра наведвальніка","Действие: перетащи или нажми стрелку влево или вправо":"Дзеянне: перацягні або націсні стрэлку ўлева ці ўправа","Например, qwerty123":"Напрыклад, qwerty123","Твой ответ":"Твой адказ","Ответ":"Адказ","Например, Саша":"Напрыклад, Саша","Напиши вопрос":"Напішы пытанне","Вопрос помощнику":"Пытанне памочніку",
+"Верно":"Правільна","Ошибка":"Памылка","Неверно":"Няправільна","Следующее":"Далей","Закрыть дело":"Закрыць справу","Дело закрыто":"Справа закрыта","Пройти ещё раз":"Прайсці яшчэ раз","Пройти заново":"Прайсці нанова","Мошенник пойман":"Махляр злоўлены","Попался":"Папаўся","Готово":"Гатова","Закончить":"Скончыць","Следующее задание":"Наступнае заданне","Завершить комнату":"Завяршыць пакой","Комната закрыта":"Пакой закрыты","Время вышло":"Час скончыўся","Всё разобрано":"Усё разабрана","Не то. Попробуй ещё или возьми подсказку.":"Не тое. Паспрабуй яшчэ або вазьмі падказку.","Комната пройдена. Все задания решены.":"Пакой пройдзены. Усе заданні вырашаны.","Разбор ошибок:":"Разбор памылак:"
+};
+const DK={Дело:"Справа",Раунд:"Раунд",Случай:"Выпадак",Ситуация:"Сітуацыя"};
+const RX=[
+[/^Штампы: (\d+) из (\d+)$/,x=>"Штампы: "+x[1]+" з "+x[2]],
+[/^До звания «(.+)»: (\d+)$/,x=>"Да звання «"+(RK2[x[1]]||x[1])+"»: "+x[2]],
+[/^(Дело|Раунд|Случай|Ситуация) (\d+) из (\d+)$/,x=>DK[x[1]]+" "+x[2]+" з "+x[3]],
+[/^Результат: (\d+) из (\d+)$/,x=>"Вынік: "+x[1]+" з "+x[2]],
+[/^Поймано мошенников: (\d+) из (\d+)$/,x=>"Злоўлена махляроў: "+x[1]+" з "+x[2]],
+[/^Найдено (\d+) из (\d+)$/,x=>"Знойдзена "+x[1]+" з "+x[2]],
+[/^Действие (\d+) из (\d+)\. Верно: (\d+)$/,x=>"Дзеянне "+x[1]+" з "+x[2]+". Правільна: "+x[3]],
+[/^Осталось: (\d+)$/,x=>"Засталося: "+x[1]],
+[/^Осталось сообщений: (\d+)$/,x=>"Засталося паведамленняў: "+x[1]],
+[/^Разобрано: (\d+), верно: (\d+)\.$/,x=>"Разабрана: "+x[1]+", правільна: "+x[2]+"."],
+[/^Задание (\d+) из (\d+)\. ([\s\S]*)$/,x=>"Заданне "+x[1]+" з "+x[2]+". "+trs(x[3])],
+[/^Новый штамп: (.+)$/,x=>"Новы штамп: "+x[1].split(", ").map(n=>trs(n)).join(", ")],
+[/^Штампы: (.+)$/,x=>"Штампы: "+x[1].split(", ").map(n=>trs(n)).join(", ")]
+];
+let LANG="ru";
+const ORIG=new WeakMap(),AORIG=new WeakMap();
+function trs(s){
+  const m=s.match(/^(\s*)([\s\S]*?)(\s*)$/),k=m[2].replace(/\s+/g," ");
+  if(!k)return s;
+  let r=Object.prototype.hasOwnProperty.call(BE,k)?BE[k]:undefined;
+  if(r===undefined){for(const p of RX){const x=k.match(p[0]);if(x){r=p[1](x);break}}}
+  return r===undefined?s:m[1]+r+m[3];
+}
+function tn(n){if(LANG!=="be")return;const v=n.nodeValue,r=trs(v);if(r!==v){ORIG.set(n,v);n.nodeValue=r}}
+function tw(root){
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&!/^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentElement.tagName)?1:2}),a=[];
+  while(w.nextNode())a.push(w.currentNode);
+  a.forEach(tn);
+}
+const ATT=["placeholder","aria-label","title"];
+function attrs(){
+  document.querySelectorAll("[placeholder],[aria-label],[title]").forEach(e=>ATT.forEach(a=>{
+    const v=e.getAttribute(a);if(v==null)return;
+    const o=AORIG.get(e)||{};
+    if(LANG==="be"){const r=trs(v);if(r!==v){o[a]=v;AORIG.set(e,o);e.setAttribute(a,r)}}
+    else if(o[a]!==undefined){e.setAttribute(a,o[a]);delete o[a]}
+  }));
+}
+new MutationObserver(ms=>{
+  if(LANG!=="be")return;
+  ms.forEach(m=>m.addedNodes.forEach(n=>{
+    if(n.nodeType===3){if(n.parentElement&&!/^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentElement.tagName))tn(n)}
+    else if(n.nodeType===1)tw(n);
+  }));
+}).observe(document.body,{childList:true,subtree:true});
+document.querySelectorAll("#asq button").forEach(b=>{b.dataset.q=b.textContent});
+const RUVT=$("#vt").value,RUTL=document.title;
+function setLang(l){
+  LANG=l;
+  try{localStorage.setItem("d14l",l)}catch(e){}
+  document.documentElement.lang=l==="be"?"be":"ru";
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),a=[];
+  while(w.nextNode())a.push(w.currentNode);
+  a.forEach(n=>{const o=ORIG.get(n);if(o!==undefined){n.nodeValue=o;ORIG.delete(n)}});
+  if(l==="be")tw(document.body);
+  attrs();
+  document.title=l==="be"?"Справа №14: Сетка. Інтэрнэт — тэрыторыя бяспекі":RUTL;
+  const vt=$("#vt");
+  if(l==="be"&&vt.value===RUVT)vt.value=BE[RUVT];
+  else if(l==="ru"&&vt.value===BE[RUVT])vt.value=RUVT;
+  $("#cdt").textContent=new Date().toLocaleDateString(l==="be"?"be-BY":"ru-RU",{day:"numeric",month:"long",year:"numeric"});
+  $("#lgsw").textContent=l==="be"?"RU":"BE";
+  setRole(location.hash.slice(1));
+  render();
+}
+$("#lgsw").onclick=()=>setLang(LANG==="be"?"ru":"be");
+try{if(localStorage.getItem("d14l")==="be")setLang("be")}catch(e){}
+</script>
+</body>
+</html>
